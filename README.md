@@ -329,15 +329,22 @@ ESLint es una herramienta de análisis estático para JavaScript que encuentra e
 **Instalación:**
 
 ```bash
-npm install eslint eslint-config-prettier eslint-plugin-react eslint-plugin-react-hooks --save-dev
+npx expo install lint --save-dev
+```
+
+```bash
+npm  i prettier eslint-config-prettier eslint-plugin-prettier --save-dev
 ```
 
 **Configuración básica (`.eslintrc.js`):**
 
 ```js
 module.exports = {
-  extends: ["eslint:recommended", "plugin:react/recommended", "prettier"],
-  plugins: ["react", "react-hooks"],
+  extends: ["expo", "prettier"],
+  plugins: ["prettier"],
+  rules: {
+    "prettier/prettier": "error",
+  },
 };
 ```
 
