@@ -28,7 +28,7 @@ export default function App() {
       <StatusBar style="auto" />
 
         { 
-            !(todos.length) ? <Todos todos={todos} />  :  <Message/> 
+            (todos.length) ? <Todos todos={todos} />  :  <Message/> 
         }
 
 

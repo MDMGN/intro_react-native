@@ -68,6 +68,8 @@ Expo es una herramienta y un conjunto de servicios que facilitan el desarrollo d
 
 ## 3. **Instalación y Configuración de Expo**
 
+[Regresar al índice](#índice)
+
 1. [Instalación de Expo](#instalación-de-expo)
    - [Requisitos previos](#requisitos-previos)
    - [Instalación de Node.js](#instalación-de-nodejs)
@@ -587,6 +589,8 @@ export default App;
 ---
 
 ## 20. **React Developer Tools**
+
+[Regresar al índice](#índice)
 
 ### ¿Qué es **react-devtools**?
 
