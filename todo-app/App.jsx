@@ -1,38 +1,44 @@
-import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
-import { StyleSheet, Text, View, FlatList } from "react-native";
-import { FloatingActionButton, Message, Todos } from "./src/components";
+import { StatusBar } from 'expo-status-bar'
+import { useState } from 'react'
+import { StyleSheet, Text, View, FlatList, Modal } from 'react-native'
+import { FloatingActionButton, Form, Message, Todos } from './src/components'
 
 export default function App() {
   const [todos, setTodos] = useState([
     {
       id: 1,
-      title: "Tarea 1",
+      title: 'Tarea 1',
     },
     {
       id: 3,
-      title: "Tarea 2",
+      title: 'Tarea 2',
     },
     {
       id: 2,
-      title: "Tarea 3",
+      title: 'Tarea 3',
     },
-  ]);
+  ])
+  const [isVisible, setIsvisible] = useState(false)
+
+  const handleFAB = () => setIsvisible(!isVisible)
 
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <FloatingActionButton type="add" onPress={()=>{}} />
+      <FloatingActionButton type="add" onPress={handleFAB} />
+      <Modal visible={isVisible}>
+        <Form handle={handleFAB} />
+      </Modal>
       {todos.length ? <Todos todos={todos} /> : <Message />}
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-});
+})
