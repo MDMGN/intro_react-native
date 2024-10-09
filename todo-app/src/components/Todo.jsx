@@ -6,7 +6,7 @@ export function Todo({ todo }) {
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.label}>Fecha: {<Text>{date}</Text>}</Text>
-      <Text style={styles.label}>Descripción:{<Text>{date}</Text>}</Text>
+      <Text style={styles.label}>Descripción:{<Text>{description}</Text>}</Text>
     </View>
   )
 }
@@ -15,8 +15,9 @@ const styles = StyleSheet.create({
   container: {
     marginVertical: 10,
     padding: 10,
+    paddingTop: 15,
     width: 300,
-    shadowColor: '#000',
+    shadowColor: '#fff',
     elevation: 3,
     paddingLeft: 20,
     borderRadius: 10,
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   label: {
-    fontSize: 15,
+    fontSize: 17,
     color: '#fff',
     fontWeight: 'bold',
     margin: 5,

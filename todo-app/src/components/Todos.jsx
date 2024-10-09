@@ -1,13 +1,23 @@
-import { FlatList, Text } from "react-native";
-import { Todo } from "./Todo";
+import { View, FlatList, StyleSheet } from 'react-native'
+import { Todo } from './Todo'
 
 export function Todos({ todos }) {
   return (
-    <FlatList
-      style={{ marginVertical: 250 }}
-      data={todos}
-      keyExtractor={(todo) => todo.id}
-      renderItem={({ item }) => <Todo todo={item}></Todo>}
-    />
-  );
+    <View style={styles.container}>
+      <FlatList
+        contentContainerStyle={{ flexGrow: 1 }}
+        showsVerticalScrollIndicator={false} // Asegúrate de que esta propiedad esté escrita correctamente
+        data={todos}
+        keyExtractor={(todo) => todo.id}
+        renderItem={({ item }) => <Todo todo={item} />}
+      />
+    </View>
+  )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1, // Asegúrate de que ocupe todo el espacio disponible
+    padding: 10, // Puedes ajustar el padding según sea necesario
+  },
+})
