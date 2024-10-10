@@ -17,7 +17,7 @@ export function Todos({ todos }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, // Asegúrate de que ocupe todo el espacio disponible
-    padding: 10, // Puedes ajustar el padding según sea necesario
+    flex: 1,
+    padding: 10,
   },
 })
