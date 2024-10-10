@@ -6,7 +6,7 @@ export function Todos({ todos }) {
     <View style={styles.container}>
       <FlatList
         contentContainerStyle={{ flexGrow: 1 }}
-        showsVerticalScrollIndicator={false} // Asegúrate de que esta propiedad esté escrita correctamente
+        showsVerticalScrollIndicator={false}
         data={todos}
         keyExtractor={(todo) => todo.id}
         renderItem={({ item }) => <Todo todo={item} />}
