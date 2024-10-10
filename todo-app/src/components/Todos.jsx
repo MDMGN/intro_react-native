@@ -1,11 +1,10 @@
-import { View, FlatList, StyleSheet } from 'react-native'
-import { Todo } from './Todo'
+import { View, FlatList, StyleSheet } from "react-native"
+import { Todo } from "./Todo"
 
 export function Todos({ todos }) {
   return (
     <View style={styles.container}>
       <FlatList
-        contentContainerStyle={{ flexGrow: 1 }}
         showsVerticalScrollIndicator={false}
         data={todos}
         keyExtractor={(todo) => todo.id}

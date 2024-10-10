@@ -1,7 +1,7 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native"
 
 export function BackgroundRotateRound() {
-  return <View style={styles.background}></View>;
+  return <View style={styles.background}></View>
 }
 
 const styles = StyleSheet.create({
@@ -20,4 +20,4 @@ const styles = StyleSheet.create({
     borderRadius: 300,
     borderWidth: 2,
   },
-});
+})
