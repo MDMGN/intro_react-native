@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     textTransform: "uppercase",
     fontWeight: "bold",
-    color: "#fff",
     fontSize: 18,
   },
   label: {

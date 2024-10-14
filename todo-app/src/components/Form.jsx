@@ -21,7 +21,7 @@ export function Form({ handle }) {
   return (
     <View style={styles.container}>
       <Pressable style={styles.btnClose} onPress={handle}>
-        <Text style={styles.btnCloseText}>X Cerrar</Text>
+        <Text style={styles.btnText}>X Cerrar</Text>
       </Pressable>
 
       <InputTextField
@@ -49,7 +49,7 @@ export function Form({ handle }) {
         maxLength={120}
       />
       <Pressable style={styles.btnAdd} onPress={() => {}}>
-        <Text style={styles.btnCloseText}>Agregar</Text>
+        <Text style={styles.btnText}>Agregar</Text>
       </Pressable>
     </View>
   )
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     alignSelf: "center",
   },
-  btnCloseText: {
+  btnText: {
     fontSize: 20,
     fontWeight: "bold",
     textTransform: "uppercase",

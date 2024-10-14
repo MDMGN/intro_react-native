@@ -95,3 +95,14 @@ export function Form({ setOpen, setTodos }) {
   // Aquí debes crear la función que maneje la validación y actualización de tareas
 }
 ```
+
+### Ejercicio 6:
+
+> El botón "Agregar" no ofrece una experiencia de usuario óptima. Utilizando el estado `pressed` proporcionado por el componente Pressable de React Native, implementaremos una mejora: cuando el botón esté siendo presionado por el usuario, reduciremos la opacidad del botón y cambiaremos el color de su texto.
+
+```js
+// Modifica el botón de agregar para mejorar la experiencia de usuario
+<Pressable style={styles.btnAdd} onPress={handleAddTODO}>
+  <Text style={styles.btnText}>Agregar</Text> // Texto del botón
+</Pressable>
+```

@@ -36,8 +36,8 @@ export default function App() {
         <Text
           style={{
             fontWeight: "bold",
-            color: "#000",
-            fontSize: 20,
+            color: "#fff",
+            fontSize: 30,
           }}
         >
           TODO APP
