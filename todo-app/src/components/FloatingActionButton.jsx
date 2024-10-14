@@ -1,4 +1,4 @@
-import { Text, Pressable, StyleSheet } from "react-native"
+import { View, Text, Pressable, StyleSheet } from "react-native"
 
 /**
  * @argument {'add'|'remove'} type
@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     elevation: 5,
-    color: "#fff",
   },
   icon: {
     color: "#fff",
