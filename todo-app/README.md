@@ -18,8 +18,8 @@ export function Form({ handle }) {
       <TextInput
         keyboardType="text"
         style={styles.input}
-        placeholder={'Introduzca un título'}
-        placeholderTextColor={'#999'}
+        placeholder={"Introduzca un título"}
+        placeholderTextColor={"#999"}
       />
     </View>
 
@@ -41,9 +41,9 @@ export function Form({ handle }) {
     // Pásale estas nuevas propiedades al componente (multiline, numberOfLines y maxLength)
     // y modifica el componente InputTextField para que pueda recibirlas.
     <InputTextField
-      name={'description'}
-      title={'Descripción: '}
-      type={'text'}
+      name={"description"}
+      title={"Descripción: "}
+      type={"text"}
       placeholder="Introducir una descripción"
       onChange={handleChangeText}
       multiline={true}
@@ -87,7 +87,7 @@ const handleChangeText = (name, value) => {
 
 ### Ejercicio 5:
 
-> Ahora debemos guardar nuestra nueva tarea. Crea un nuevo manejador que se ejecute cuando el botón `Agregar` sea presionado. Este manejador debe validar que ningún campo esté vacío; si algún campo lo está, lanzará una alerta, y en caso contrario, actualizará el estado de `todos` y genrando una id para la nueva tarea.
+> Ahora debemos guardar nuestra nueva tarea. Crea un nuevo manejador que se ejecute cuando el botón `Agregar` sea presionado. Este manejador debe validar que ningún campo esté vacío; si algún campo lo está, lanzará una alerta, y en caso contrario, actualizará el estado de `todos` y generando una id para la nueva tarea.
 
 ```js
 // No olvides pasar el modificador de estado de 'todos' al componente Form

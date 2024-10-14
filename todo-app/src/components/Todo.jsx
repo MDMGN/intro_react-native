@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet } from "react-native"
 
 export function Todo({ todo }) {
   const { id, title, date, description } = todo
@@ -17,24 +17,24 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingTop: 15,
     width: 300,
-    shadowColor: '#fff',
+    shadowColor: "#fff",
     elevation: 3,
     paddingLeft: 20,
     borderRadius: 10,
     height: 200,
-    backgroundColor: 'rgba(0,0,0,.8)',
+    backgroundColor: "rgba(0,0,0,.8)",
   },
   title: {
-    textAlign: 'center',
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
-    color: '#fff',
+    textAlign: "center",
+    textTransform: "uppercase",
+    fontWeight: "bold",
+    color: "#fff",
     fontSize: 18,
   },
   label: {
     fontSize: 17,
-    color: '#fff',
-    fontWeight: 'bold',
+    color: "#fff",
+    fontWeight: "bold",
     margin: 5,
   },
 })
