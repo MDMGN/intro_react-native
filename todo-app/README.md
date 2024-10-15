@@ -264,7 +264,7 @@ export default function App() {
 
 ### Ejercicio 11
 
-> Ahora nos tocá filtrar nuestros `TODOS` por tareas completadas y por hacer. Usa el componente **CheckBox** de **@react-native-community/checbox** .
+> Ahora nos tocá filtrar nuestros `TODOS` por tareas completadas y por hacer. Usa el componente **CheckBox** de **@react-native-community/checbox** y filtra los todos por
 
 ```js
 
