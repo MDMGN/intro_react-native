@@ -35,18 +35,18 @@ React Native es un framework de desarrollo móvil que permite construir aplicaci
 **Ejemplo:**
 
 ```js
-import React from "react";
-import { Text, View } from "react-native";
+import React from "react"
+import { Text, View } from "react-native"
 
 const App = () => {
   return (
     <View>
       <Text>Hello, React Native!</Text>
     </View>
-  );
-};
+  )
+}
 
-export default App;
+export default App
 ```
 
 ---
@@ -181,16 +181,16 @@ Al crear una aplicación con Expo, algunos archivos y carpetas importantes será
 **Ejemplo:**
 
 ```js
-import { StatusBar } from "expo-status-bar";
-import { View } from "react-native";
+import { StatusBar } from "expo-status-bar"
+import { View } from "react-native"
 
 const App = () => {
   return (
     <View>
       <StatusBar style="auto" />
     </View>
-  );
-};
+  )
+}
 ```
 
 ---
@@ -205,16 +205,16 @@ const App = () => {
 **Ejemplo:**
 
 ```js
-import Constants from "expo-constants";
-import { Text, View } from "react-native";
+import Constants from "expo-constants"
+import { Text, View } from "react-native"
 
 const App = () => {
   return (
     <View>
       <Text>Nombre de la app: {Constants.manifest.name}</Text>
     </View>
-  );
-};
+  )
+}
 ```
 
 ---
@@ -234,8 +234,8 @@ const App = () => {
     <View>
       <Text>Hello World</Text>
     </View>
-  );
-};
+  )
+}
 ```
 
 ---
@@ -255,15 +255,15 @@ const App = () => {
 **Ejemplo:**
 
 ```js
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text } from "react-native"
 
 const App = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Hello World</Text>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -276,9 +276,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "#333",
   },
-});
+})
 
-export default App;
+export default App
 ```
 
 ---
@@ -302,21 +302,21 @@ Los hooks son funciones especiales en React que te permiten usar estado y otras 
 **Ejemplo:**
 
 ```js
-import React, { useState } from "react";
-import { View, Button, Text } from "react-native";
+import React, { useState } from "react"
+import { View, Button, Text } from "react-native"
 
 const App = () => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0)
 
   return (
     <View>
       <Text>Contador: {count}</Text>
       <Button title="Incrementar" onPress={() => setCount(count + 1)} />
     </View>
-  );
-};
+  )
+}
 
-export default App;
+export default App
 ```
 
 ---
@@ -347,7 +347,7 @@ module.exports = {
   rules: {
     "prettier/prettier": "error",
   },
-};
+}
 ```
 
 ---
@@ -362,20 +362,38 @@ module.exports = {
 **Ejemplo:**
 
 ```js
-import React, { useEffect, useState } from "react";
-import { Text } from "react-native";
+import React, { useEffect, useState } from "react"
+import { Text } from "react-native"
 
 const App = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(null)
 
   useEffect(() => {
     fetch("https://api.example.com/data")
       .then((response) => response.json())
-      .then((json) => setData(json));
-  }, []);
+      .then((json) => setData(json))
+  }, [])
 
-  return <Text>{data ? data.name : "Cargando..."}</Text>;
-};
+  useEffect(() => {
+    console.log("Me ejecuto la primera vez")
+  }, [])
+
+  useEffect(() => {
+    console.log("Me ejecuto muchas veces")
+  })
+
+  useEffect(() => {
+    return () => {
+      console.log("El componente murió  ")
+    }
+  })
+
+  useEffect(() => {
+    console.log("Me cada vez que la data cambia")
+  }, [data])
+
+  return <Text>{data ? data.name : "Cargando..."}</Text>
+}
 ```
 
 ---
@@ -390,18 +408,18 @@ const App = () => {
 **Ejemplo:**
 
 ```js
-import React, { useRef } from "react";
-import { Text, Button } from "react-native";
+import React, { useRef } from "react"
+import { Text, Button } from "react-native"
 
 const App = () => {
-  const count = useRef(0);
+  const count = useRef(0)
 
   return (
     <Button title="Incrementar" onPress={() => (count.current += 1)}>
       <Text>{count.current}</Text>
     </Button>
-  );
-};
+  )
+}
 ```
 
 ---
@@ -428,18 +446,18 @@ const App = () => {
 **Ejemplo de `FlatList`:**
 
 ```js
-import React from "react";
-import { FlatList, Text, View } from "react-native";
+import React from "react"
+import { FlatList, Text, View } from "react-native"
 
 const App = () => {
-  const data = [{ key: "Devin" }, { key: "Dan" }, { key: "Dominic" }];
+  const data = [{ key: "Devin" }, { key: "Dan" }, { key: "Dominic" }]
 
   return (
     <FlatList data={data} renderItem={({ item }) => <Text>{item.key}</Text>} />
-  );
-};
+  )
+}
 
-export default App;
+export default App
 ```
 
 ---
@@ -454,7 +472,7 @@ export default App;
 **Ejemplo:**
 
 ```js
-import { Text, Pressable } from "react-native";
+import { Text, Pressable } from "react-native"
 
 const App = () => {
   return (
@@ -466,10 +484,10 @@ const App = () => {
     >
       <Text>Presionar</Text>
     </Pressable>
-  );
-};
+  )
+}
 
-export default App;
+export default App
 ```
 
 ---
@@ -499,11 +517,11 @@ El renderizado condicional en React se refiere a mostrar componentes o elementos
 **Ejemplo con operador ternario:**
 
 ```js
-import React, { useState } from "react";
-import { View, Text, Button } from "react-native";
+import React, { useState } from "react"
+import { View, Text, Button } from "react-native"
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false)
 
   return (
     <View>
@@ -515,10 +533,10 @@ const App = () => {
         onPress={() => setLoggedIn(!loggedIn)}
       />
     </View>
-  );
-};
+  )
+}
 
-export default App;
+export default App
 ```
 
 ---
@@ -533,11 +551,11 @@ El componente `Modal` en React Native muestra un contenido emergente sobre el re
 **Ejemplo:**
 
 ```js
-import React, { useState } from "react";
-import { View, Text, Modal, Button } from "react-native";
+import React, { useState } from "react"
+import { View, Text, Modal, Button } from "react-native"
 
 const App = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false)
 
   return (
     <View>
@@ -549,10 +567,10 @@ const App = () => {
       </Modal>
       <Button title="Mostrar Modal" onPress={() => setModalVisible(true)} />
     </View>
-  );
-};
+  )
+}
 
-export default App;
+export default App
 ```
 
 ---
@@ -567,12 +585,12 @@ El paso de props (propiedades) en React es la forma en la que se comunican los c
 **Ejemplo:**
 
 ```js
-import React from "react";
-import { View, Text } from "react-native";
+import React from "react"
+import { View, Text } from "react-native"
 
 const Greeting = ({ name }) => {
-  return <Text>Hola, {name}!</Text>;
-};
+  return <Text>Hola, {name}!</Text>
+}
 
 const App = () => {
   return (
@@ -580,10 +598,10 @@ const App = () => {
       <Greeting name="Juan" />
       <Greeting name="María" />
     </View>
-  );
-};
+  )
+}
 
-export default App;
+export default App
 ```
 
 ---

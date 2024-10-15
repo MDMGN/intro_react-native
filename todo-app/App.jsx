@@ -46,9 +46,9 @@ export default function App() {
         <Modal visible={open} animationType={"slide"}>
           <Form handle={handleFAB} />
         </Modal>
-        <FloatingActionButton type="add" onPress={handleFAB} />
         {todos.length ? <Todos todos={todos} /> : <Message />}
       </View>
+      <FloatingActionButton type="add" onPress={handleFAB} />
     </>
   )
 }

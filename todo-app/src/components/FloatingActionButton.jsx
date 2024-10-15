@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     elevation: 5,
+    zIndex: 5,
   },
   icon: {
     color: "#fff",

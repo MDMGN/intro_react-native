@@ -1,9 +1,12 @@
-import { useState } from "react"
-import { View, Text, Pressable, StyleSheet } from "react-native"
-import Constants from "expo-constants"
-import { InputTextField } from "./InputTextField"
+import { useEffect, useRef, useState } from "react"
+import { Text, Pressable, StyleSheet } from "react-native"
+import InputTextField from "./InputTextField"
+import withDefaultStyledContainer from "../themes/withDefaultStyledContainer"
+import { DatePicker } from "./DatePicker"
 
-export function Form({ handle }) {
+function Form({ handle }) {
+  const inputRefs = useRef({})
+
   const [data, setData] = useState({
     id: Date.now().toString(36),
     title: "",
@@ -17,28 +20,24 @@ export function Form({ handle }) {
       [name]: value,
     }))
   }
+
   console.log(data)
   return (
-    <View style={styles.container}>
+    <>
       <Pressable style={styles.btnClose} onPress={handle}>
         <Text style={styles.btnText}>X Cerrar</Text>
       </Pressable>
-
       <InputTextField
+        ref={(ref) => (inputRefs.current["title"] = ref)}
         name={"title"}
         type={"text"}
         title={"Título"}
         placeholder={"Introducir título"}
         onChangeText={handleChangeText}
       />
+      <DatePicker />
       <InputTextField
-        name={"date"}
-        type={"text"}
-        title={"Fecha"}
-        placeholder={"Introducir fecha"}
-        onChangeText={handleChangeText}
-      />
-      <InputTextField
+        ref={(ref) => (inputRefs.current["description"] = ref)}
         name={"description"}
         type={"text"}
         title={"Decripción"}
@@ -51,15 +50,10 @@ export function Form({ handle }) {
       <Pressable style={styles.btnAdd} onPress={() => {}}>
         <Text style={styles.btnText}>Agregar</Text>
       </Pressable>
-    </View>
+    </>
   )
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: "#000",
-  },
   btnClose: {
     marginRight: 20,
     marginVertical: 20,
@@ -83,3 +77,5 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
 })
+
+export default withDefaultStyledContainer(Form)

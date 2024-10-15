@@ -1,17 +1,15 @@
+import { forwardRef } from "react"
 import { View, Text, StyleSheet, TextInput } from "react-native"
 
-export function InputTextField({
-  name,
-  title,
-  type,
-  placeholder = "",
-  onChangeText,
-  ...otherProps
-}) {
+function InputTextField(
+  { name, title, type, placeholder = "", onChangeText, ...otherProps },
+  ref
+) {
   return (
     <View style={styles.formGroup}>
       <Text style={styles.label}>{title}:</Text>
       <TextInput
+        ref={ref}
         keyboardType={type}
         style={styles.input}
         placeholder={placeholder}
@@ -42,3 +40,5 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
 })
+
+export default forwardRef(InputTextField)
