@@ -1,43 +1,36 @@
-import { useState } from "react"
+import { useState, forwardRef } from "react"
 import DateTimePicker from "@react-native-community/datetimepicker"
 import InputTextField from "./InputTextField"
 
-export function DatePicker(props) {
-  const [date, setDate] = useState(new Date(1598051730000))
-  const [mode, setMode] = useState("date")
+function DatePicker({ value, name, onChangeText, ...otherProps }, ref) {
+  const [date, setDate] = useState(new Date())
   const [show, setShow] = useState(false)
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate
     setShow(false)
     setDate(currentDate)
-  }
-
-  const showMode = (currentMode) => {
-    setShow(true)
-    setMode(currentMode)
-  }
-
-  const showDatepicker = () => {
-    showMode("date")
-  }
-
-  const showTimepicker = () => {
-    showMode("time")
+    onChangeText(name, date)
   }
 
   return (
     <>
-      <InputTextField title={"Fecha"} onFocus={() => showDatepicker()} />
+      <InputTextField
+        value={date.toLocaleDateString()}
+        onFocus={() => setShow(true)}
+        ref={ref}
+        {...otherProps}
+      />
       {show && (
         <DateTimePicker
           testID="dateTimePicker"
           value={date}
-          mode={mode}
-          is24Hour={true}
+          mode="date"
           onChange={onChange}
         />
       )}
     </>
   )
 }
+
+export default forwardRef(DatePicker)

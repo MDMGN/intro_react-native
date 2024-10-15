@@ -35,7 +35,13 @@ function Form({ handle }) {
         placeholder={"Introducir título"}
         onChangeText={handleChangeText}
       />
-      <DatePicker />
+      <DatePicker
+        ref={(ref) => (inputRefs.current["date"] = ref)}
+        title={"Fecha"}
+        placeholder="Introducir fecha"
+        onChangeText={handleChangeText}
+        name={"date"}
+      />
       <InputTextField
         ref={(ref) => (inputRefs.current["description"] = ref)}
         name={"description"}
