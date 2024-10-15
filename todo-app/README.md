@@ -106,3 +106,166 @@ export function Form({ setOpen, setTodos }) {
   <Text style={styles.btnText}>Agregar</Text> // Texto del botón
 </Pressable>
 ```
+
+### Ejercicio 7
+
+> Aún nos falta mejorar la experiencia de usuario. Crea una referencia para cada input en el componente `Form` y añade un texto con el mensaje de error que será visible solo si el campo está vacío (esto reemplazará la alerta del ejercicio 5). Al presionar el botón de agregar, si hay un campo vacío, coloca el foco en ese `input`.
+
+```js
+// Usa una referencia para poder llamar al método focus del TextInput
+<InputTextField
+  name={"title"}
+  type={"text"}
+  title={"Título"}
+  placeholder={"Introducir título"}
+  onChangeText={handleChangeText}
+  ref={(input) => inputRefs.current['title'] = input} // Asigna la referencia
+/>
+
+  // Continuar con la lógica de agregar tarea...
+};
+```
+
+En este ejericio:
+
+- Usamos inputRefs para almacenar una referencia de cada TextInput, lo que nos permitirá usar el método focus() para colocar el cursor en el campo vacío.
+- También mostramos un mensaje de error si el campo está vacío, mejorando la experiencia de usuario sin necesidad de alertas.
+
+### Ejercicio 8
+
+> Ahora ya podemos agregar una tarea a nuestra lista, pero ¿qué pasa si queremos eliminarla? Utiliza el componente `Alert` y `Pressable` dentro de nuestro componente **Todo.jsx**, donde le daremos al usuario la opción de eliminar la tarea si acepta, o cancelar si no lo desea.
+
+```js
+import { Alert, Pressable, Text, View } from "react-native"
+
+export function Todo({ todo }) {
+  const { id, title, date, description } = todo
+
+  const deleteTodo = (id) => {
+    // Lógica para eliminar la tarea si acepta
+  }
+
+  const handleDelete = () => {
+    Alert.alert(
+      "Eliminar tarea",
+      "¿Estás seguro que deseas eliminar esta tarea?",
+      [
+        {
+          text: "Cancelar",
+          style: "cancel",
+        },
+        {
+          text: "Eliminar",
+          onPress: () => deleteTodo(id),
+        },
+      ]
+    )
+  }
+
+  return (
+    <View>
+      <Text>{title}</Text>
+      <Text>{description}</Text>
+      <Text>{date}</Text>
+
+      <Pressable onPress={handleDelete}>
+        <Text>Eliminar</Text>
+      </Pressable>
+    </View>
+  )
+}
+```
+
+En este ejercicio:
+
+- Se utiliza `Alert.alert` para mostrar una ventana de confirmación que le pregunta al usuario si realmente quiere eliminar la tarea.
+- Si el usuario presiona "Eliminar", se llama a la función `deleteTodo(id)` para eliminar la tarea. Si elige "Cancelar", no se hace nada.
+- `Pressable` se usa para envolver el botón de eliminar que activa la alerta.
+
+### Ejercicio 9:
+
+> Ahora solo nos falta actualizar una tarea cuando se presione desde nuestra lista. Agrega un botón "Modificar" que abrirá un modal. Usa el componente **Form** para recibir una nueva propiedad `todo`, pasada desde el componente **App.jsx**, y rellenar sus inputs. Además, cuando se le dé al botón "Guardar", actualiza la información del estado de **todos** con la validación adecuada y restablece el estado de `todo` a un objeto vacío. Utiliza **useEffect** para inicializar el estado del formulario con los valores de la tarea seleccionada.
+
+```js
+// En el componente App.jsx
+import { useState } from 'react';
+import { Modal, Button } from 'react-native';
+import { Form } from './Form';
+import { Todo } from './Todo';
+
+export function App() {
+  const [todos, setTodos] = useState([...]); // Lista de tareas
+  const [selectedTodo, setSelectedTodo] = useState({}); // Tarea seleccionada para editar
+  const [modalEditarVisible, setModalEditarVisible] = useState(false);
+
+  const handleUpdateTodo=(todo)=>{
+        //Implementar la lógica
+  }
+
+  return (
+    <>
+        ........
+      <Modal visible={modalVisible} animationType="slide">
+        <Form
+          handleSaveTodo={handleUpdateTodo}
+          todo={selectedTodo} // Pasa la tarea seleccionada al formulario
+          handleUpdateTodo={handleUpdateTodo} // Manejador para guardar cambios
+        />
+
+        ..................
+      </Modal>
+    </>
+  );
+}
+```
+
+En este ejercicio:
+
+- **App.jsx**: Aquí se administra el estado de las tareas y la tarea seleccionada para editar. El botón "Modificar" abre un modal que contiene el formulario.
+- **Form.jsx**: Inicializa el estado del formulario con la tarea seleccionada usando `useEffect`. Al presionar "Guardar", se valida que todos los campos estén completos y luego se llama a `handleUpdateTodo` para actualizar la tarea en la lista de todos.
+
+## Ejercicio 10:
+
+> Implementaremos el modo oscuro en nuestra aplicación TODO APP. Agrega el componente Switch de React Native y crea el estado isDarkMode, el cual será pasado a un HighOrderComponent (HOC) llamado withDarkMode. Este HOC envolverá los componentes con los estilos correspondientes al modo oscuro y pasará al componente hijo el color del texto como prop.
+
+```js
+export default function App() {
+
+  const [isDarkmode, setIsDarkmode] = useState(false);
+  const toggleSwitch = () => setIsDarkmode((previousState) => !previousState);
+
+
+ return (<>
+      .....
+        <Switch
+          style={styles.switch}
+          trackColor={{ false: '#767577', true: '#81b0ff' }}
+          thumbColor={isDarkmode ? '#f5dd4b' : '#f4f3f4'}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={toggleSwitch}
+          value={isDarkmode}
+        />
+     .....
+    </>)
+
+}
+
+  const styles = StyleSheet.create({
+  ......
+  switch: {
+    alignSelf: 'flex-end',
+    transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }],
+    marginRight: 20,
+  },
+});
+
+'''
+```
+
+### Ejercicio 11
+
+> Ahora nos tocá filtrar nuestros `TODOS` por tareas completadas y por hacer. Usa el componente **CheckBox** de **@react-native-community/checbox** .
+
+```js
+
+```
