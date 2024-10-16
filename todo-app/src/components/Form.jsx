@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { Text, Pressable, StyleSheet } from "react-native"
-import InputTextField from "./InputTextField"
 import withDefaultStyledContainer from "../themes/withDefaultStyledContainer"
-import { DatePicker } from "./DatePicker"
+import InputTextField from "./InputTextField"
+import DatePicker from "./DatePicker"
 
 function Form({ handle }) {
   const inputRefs = useRef({})

@@ -16,7 +16,12 @@ function DatePicker({ value, name, onChangeText, ...otherProps }, ref) {
   return (
     <>
       <InputTextField
-        value={date.toLocaleDateString()}
+        value={new Intl.DateTimeFormat("es-ES ", {
+          dateStyle: "long",
+          timeStyle: "medium",
+        })
+          .format(date)
+          .toString()}
         onFocus={() => setShow(true)}
         ref={ref}
         {...otherProps}
