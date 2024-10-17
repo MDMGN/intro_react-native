@@ -13,18 +13,19 @@ function Form({ setOpen, setTodos }) {
     description: "",
   })
 
-  const handleChangeText = (name, value) => {
+  const handleChangeText = (name, value, setError) => {
     setData((previusValue) => ({
       ...previusValue,
       [name]: value,
     }))
+    setError(() => value.trim() === "")
   }
 
   const handleAddTodos = () => {
-    const isEmty = Object.values(data).some((value) => value.trim() === "")
+    const input = Object.keys(data).find((key) => data[key].trim() === "")
 
-    if (isEmty) {
-      alert("Algún campo está vacio")
+    if (input) {
+      inputRefs.current[input].focus()
       return
     }
 
@@ -36,7 +37,6 @@ function Form({ setOpen, setTodos }) {
         completed: false,
       },
     ])
-
     setOpen(false)
     return
   }

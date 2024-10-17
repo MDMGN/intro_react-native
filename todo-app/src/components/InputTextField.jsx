@@ -1,10 +1,11 @@
-import { forwardRef } from "react"
+import { forwardRef, useState } from "react"
 import { View, Text, StyleSheet, TextInput } from "react-native"
 
 function InputTextField(
   { name, title, type, placeholder = "", onChangeText, ...otherProps },
   ref
 ) {
+  const [error, setError] = useState(false)
   return (
     <View style={styles.formGroup}>
       <Text style={styles.label}>{title}:</Text>
@@ -14,9 +15,14 @@ function InputTextField(
         style={styles.input}
         placeholder={placeholder}
         placeholderTextColor={"#999"}
-        onChangeText={(value) => onChangeText(name, value)}
+        onChangeText={(value) => onChangeText(name, value, setError)}
         {...otherProps}
       />
+      {error && (
+        <Text style={{ color: "#f00", fontWeight: "bold" }}>
+          {title} es requerido
+        </Text>
+      )}
     </View>
   )
 }
