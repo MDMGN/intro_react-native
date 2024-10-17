@@ -4,11 +4,10 @@ import withDefaultStyledContainer from "../themes/withDefaultStyledContainer"
 import InputTextField from "./InputTextField"
 import DatePicker from "./DatePicker"
 
-function Form({ handle }) {
+function Form({ setOpen, setTodos }) {
   const inputRefs = useRef({})
 
   const [data, setData] = useState({
-    id: Date.now().toString(36),
     title: "",
     date: "",
     description: "",
@@ -21,10 +20,31 @@ function Form({ handle }) {
     }))
   }
 
+  const handleAddTodos = () => {
+    const isEmty = Object.values(data).some((value) => value.trim() === "")
+
+    if (isEmty) {
+      alert("Algún campo está vacio")
+      return
+    }
+
+    setTodos((previusValue) => [
+      ...previusValue,
+      {
+        id: Date.now().toString(36),
+        ...data,
+        completed: false,
+      },
+    ])
+
+    setOpen(false)
+    return
+  }
+
   console.log(data)
   return (
     <>
-      <Pressable style={styles.btnClose} onPress={handle}>
+      <Pressable style={styles.btnClose} onPress={() => setOpen(false)}>
         <Text style={styles.btnText}>X Cerrar</Text>
       </Pressable>
       <InputTextField
@@ -53,8 +73,20 @@ function Form({ handle }) {
         numberOfLines={4}
         maxLength={120}
       />
-      <Pressable style={styles.btnAdd} onPress={() => {}}>
-        <Text style={styles.btnText}>Agregar</Text>
+      <Pressable
+        onPress={handleAddTodos}
+        style={({ pressed }) => [
+          {
+            opacity: pressed ? 0.7 : 1,
+          },
+          styles.btnAdd,
+        ]}
+      >
+        {({ pressed }) => (
+          <Text style={[styles.btnText, { color: pressed ? "blue" : "white" }]}>
+            Agregar
+          </Text>
+        )}
       </Pressable>
     </>
   )

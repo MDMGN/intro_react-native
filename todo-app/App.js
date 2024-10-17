@@ -25,7 +25,6 @@ export default function App() {
       title: "Tarea 3",
     },
   ]) // TODOS STATE
-
   const handleFAB = () => setOpen(!open)
 
   return (
@@ -44,7 +43,7 @@ export default function App() {
         </Text>
 
         <Modal visible={open} animationType={"slide"}>
-          <Form handle={handleFAB} />
+          <Form setOpen={setOpen} setTodos={setTodos} />
         </Modal>
         {todos.length ? <Todos todos={todos} /> : <Message />}
       </View>

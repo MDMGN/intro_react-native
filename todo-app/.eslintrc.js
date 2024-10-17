@@ -5,4 +5,5 @@ module.exports = {
   rules: {
     "prettier/prettier": ["error"],
   },
+  ecmaVersion: "2021",
 }
