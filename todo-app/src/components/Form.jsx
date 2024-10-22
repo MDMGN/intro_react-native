@@ -18,7 +18,9 @@ function Form({ setOpen, setTodos }) {
       ...previusValue,
       [name]: value,
     }))
-    setError(() => value.trim() === "")
+    if (setError) {
+      setError(() => value.trim() === "")
+    }
   }
 
   const handleAddTodos = () => {
