@@ -60,6 +60,7 @@ function Form({ setOpen, setTodos }) {
         title={"Fecha"}
         placeholder="Introducir fecha"
         onChangeText={handleChangeText}
+        value={data.date}
         name={"date"}
       />
       <InputTextField

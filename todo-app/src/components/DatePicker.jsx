@@ -1,17 +1,11 @@
 import { useState, forwardRef } from "react"
 import DateTimePicker from "@react-native-community/datetimepicker"
 import InputTextField from "./InputTextField"
+import { formatDate } from "../helpers"
 
 function DatePicker({ value, name, onChangeText, ...otherProps }, ref) {
   const [date, setDate] = useState(new Date())
   const [show, setShow] = useState(false)
-
-  const formatDate = () => {
-    return new Intl.DateTimeFormat("es-ES", {
-      dateStyle: "long",
-      timeStyle: "medium",
-    }).format(date)
-  }
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate
@@ -23,7 +17,7 @@ function DatePicker({ value, name, onChangeText, ...otherProps }, ref) {
   return (
     <>
       <InputTextField
-        value={formatDate(date)}
+        value={value}
         onFocus={() => setShow(true)}
         ref={ref}
         {...otherProps}

@@ -19,7 +19,7 @@ function InputTextField(
         {...otherProps}
       />
       {error && (
-        <Text style={{ color: "#f00", fontWeight: "bold" }}>
+        <Text style={{ color: "#f00", fontWeight: "bold", fontSize: 18 }}>
           {title} es requerido
         </Text>
       )}
