@@ -7,7 +7,8 @@ function DatePicker({ value, name, onChangeText, ...otherProps }, ref) {
   const [date, setDate] = useState(new Date())
   const [show, setShow] = useState(false)
 
-  const onChange = ({ type }, selectedDate) => {
+  const onChange = (event, selectedDate) => {
+    const { nativeEvent, type } = event
     const currentDate = selectedDate
     setShow(false)
     if (type !== "dismissed") {
