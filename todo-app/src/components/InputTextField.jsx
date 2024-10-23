@@ -15,7 +15,9 @@ function InputTextField(
         style={styles.input}
         placeholder={placeholder}
         placeholderTextColor={"#999"}
-        onChangeText={(value) => onChangeText(name, value, setError)}
+        onChangeText={(value) =>
+          onChangeText && onChangeText(name, value, setError)
+        }
         {...otherProps}
       />
       {error && (
