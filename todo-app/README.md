@@ -230,42 +230,105 @@ En este ejercicio:
 
 ```js
 export default function App() {
+  //Crea su estado
+  const [isDarkmode, setIsDarkmode] = useState(false)
 
-  const [isDarkmode, setIsDarkmode] = useState(false);
-  const toggleSwitch = () => setIsDarkmode((previousState) => !previousState);
-
-
- return (<>
-      .....
-        <Switch
-          style={styles.switch}
-          trackColor={{ false: '#767577', true: '#81b0ff' }}
-          thumbColor={isDarkmode ? '#f5dd4b' : '#f4f3f4'}
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={toggleSwitch}
-          value={isDarkmode}
-        />
-     .....
-    </>)
-
+  return (
+    // Arega este componente a App.jsx
+    <View
+      style={{
+        flexDirection: "row",
+        justifyContent: "flex-end",
+        width: "100%",
+        alignItems: "center",
+        gap: 30,
+      }}
+    >
+      <Text
+        style={{
+          fontWeight: "bold",
+          fontSize: 20,
+          color: "#fff",
+        }}
+      >
+        {isDarkmode ? "Dark Mode" : "Light Mode"}
+      </Text>
+      <Switch
+        style={{
+          alignSelf: "flex-end",
+          transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }],
+          marginRight: 20,
+        }}
+        trackColor={{ false: "#767577", true: "#000" }}
+        thumbColor={isDarkmode ? "#00f" : "#f4f3f4"}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={() => setIsDarkmode((previusValue) => !previusValue)}
+        value={isDarkmode}
+      />
+    </View>
+  )
 }
-
-  const styles = StyleSheet.create({
-  ......
-  switch: {
-    alignSelf: 'flex-end',
-    transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }],
-    marginRight: 20,
-  },
-});
-
-'''
 ```
 
 ### Ejercicio 11
 
-> Ahora nos tocá filtrar nuestros `TODOS` por tareas completadas y por hacer. Usa el componente **CheckBox** de **@react-native-community/checbox** y filtra los todos por
+> Ahora nos tocá filtrar nuestros `TODOS` por tareas completadas y por hacer. Usa el componente **DropdownSelect** de **react-native-input-select** y filtra las tareas por `Todos` , `Completados` y `No completados`.
+
+#### Instalar la depedencia en tu proyecto:
+
+```cmd
+npm install react-native-input-select
+```
+
+> Nota:
+> Puedes leer la documentación para saber como funciona el componente o seguir el ejemplo del ejercicio.
+> [Documentación](https://github.com/azeezat/react-native-select)
 
 ```js
+export default function App() {
+  // Crea un estado para el filtro
+  const [filter, setFilter] = useState(null)
+  // Agrega esté nuevo componente en App.jsx
+  <DropdownSelect
+    label="Filtrar por..."
+    labelStyle={{ fontWeight: "bold", fontSize: 15, color: "#fff" }}
+    options={[
+      {
+        label: "Todos",
+        value: null,
+      },
+      {
+        label: "Completadas",
+        value: true,
+      },
+      {
+        label: "No completadas",
+        value: false,
+      },
+    ]}
+    onValueChange={setFilter}
+    primaryColor={"blue"}
+    dropdownContainerStyle={{ width: "80%", color: "#000" }}
+  />
+}
+```
 
+```js
+// Ahora filtra los todos que se mostrarán en pantalla por el filtro elegido
+
+//Modificá el estado de todos por su filtro antes de pasarlo al componente <Todos />
+
+{
+  todos.length ? (
+    <Todos
+      todos={
+        //Modifica el estado
+      }
+      handleUpdateTodos={handleUpdateTodos}
+      setTodo={setTodo}
+    />
+  ) : (
+    <Message />
+  )
+}
 ```
