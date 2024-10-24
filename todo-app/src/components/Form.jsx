@@ -1,10 +1,20 @@
-import { useRef, useState } from "react"
-import { Text, Pressable, StyleSheet } from "react-native"
+import { useEffect, useRef, useState } from "react"
+import {
+  Text,
+  Pressable,
+  StyleSheet,
+  ScrollView,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Platform,
+} from "react-native"
 import withDefaultStyledContainer from "../themes/withDefaultStyledContainer"
 import InputTextField from "./InputTextField"
 import DatePicker from "./DatePicker"
+import Toast from "react-native-toast-message"
 
-function Form({ setOpen, setTodos }) {
+function Form({ setOpen, setTodos, todo, setTodo, handleUpdateTodos }) {
   const inputRefs = useRef({})
 
   const [data, setData] = useState({
@@ -23,74 +33,106 @@ function Form({ setOpen, setTodos }) {
     }
   }
 
-  const handleAddTodos = () => {
-    const input = Object.keys(data).find((key) => data[key].trim() === "")
+  const onSubmit = () => {
+    const input = Object.keys(data).find((key) =>
+      typeof data[key] === "string" ? data[key].trim() === "" : false
+    )
 
     if (input) {
       inputRefs.current[input].focus()
       return
     }
 
-    setTodos((previusValue) => [
-      ...previusValue,
-      {
-        id: Date.now().toString(36),
-        ...data,
-        completed: false,
-      },
-    ])
-    setOpen(false)
-    return
+    if (todo) {
+      handleUpdateTodos(data)
+      setTodo(null)
+    } else {
+      setTodos((previusValue) => [
+        ...previusValue,
+        {
+          id: Date.now().toString(36),
+          ...data,
+          completed: false,
+        },
+      ])
+      setOpen(false)
+      Toast.show({
+        text1: `Se agregado la tarea ${data.title}`,
+        type: "success",
+      })
+    }
   }
 
-  console.log(data)
+  useEffect(() => {
+    if (todo) setData(todo)
+  }, [])
+
+  console.log({ data, todo })
   return (
     <>
-      <Pressable style={styles.btnClose} onPress={() => setOpen(false)}>
-        <Text style={styles.btnText}>X Cerrar</Text>
-      </Pressable>
-      <InputTextField
-        ref={(ref) => (inputRefs.current["title"] = ref)}
-        name={"title"}
-        type={"text"}
-        title={"Título"}
-        placeholder={"Introducir título"}
-        onChangeText={handleChangeText}
-      />
-      <DatePicker
-        ref={(ref) => (inputRefs.current["date"] = ref)}
-        title={"Fecha"}
-        placeholder="Introducir fecha"
-        onChangeText={handleChangeText}
-        value={data.date}
-        name={"date"}
-      />
-      <InputTextField
-        ref={(ref) => (inputRefs.current["description"] = ref)}
-        name={"description"}
-        type={"text"}
-        title={"Decripción"}
-        placeholder={"Introducir descripción"}
-        onChangeText={handleChangeText}
-        multiline={true}
-        numberOfLines={4}
-        maxLength={120}
-      />
-      <Pressable
-        onPress={handleAddTodos}
-        style={({ pressed }) => [
-          {
-            opacity: pressed ? 0.7 : 1,
-          },
-          styles.btnAdd,
-        ]}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        {({ pressed }) => (
-          <Text style={[styles.btnText, { color: pressed ? "blue" : "white" }]}>
-            Agregar
-          </Text>
-        )}
-      </Pressable>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <ScrollView>
+            <Pressable
+              style={styles.btnClose}
+              onPress={() => (todo ? setTodo(null) : setOpen(false))}
+            >
+              <Text style={styles.btnText}>X Cerrar</Text>
+            </Pressable>
+            <InputTextField
+              ref={(ref) => (inputRefs.current["title"] = ref)}
+              name={"title"}
+              type={"text"}
+              title={"Título"}
+              placeholder={"Introducir título"}
+              onChangeText={handleChangeText}
+              value={data.title}
+            />
+            <DatePicker
+              ref={(ref) => (inputRefs.current["date"] = ref)}
+              title={"Fecha"}
+              placeholder="Introducir fecha"
+              onChangeText={handleChangeText}
+              value={data.date}
+              name={"date"}
+            />
+            <InputTextField
+              ref={(ref) => (inputRefs.current["description"] = ref)}
+              name={"description"}
+              type={"text"}
+              title={"Decripción"}
+              placeholder={"Introducir descripción"}
+              onChangeText={handleChangeText}
+              multiline={true}
+              numberOfLines={4}
+              maxLength={120}
+              value={data.description}
+            />
+            <Pressable
+              onPress={onSubmit}
+              style={({ pressed }) => [
+                {
+                  opacity: pressed ? 0.7 : 1,
+                },
+                styles.btnAdd,
+              ]}
+            >
+              {({ pressed }) => (
+                <Text
+                  style={[
+                    styles.btnText,
+                    { color: pressed ? "blue" : "white" },
+                  ]}
+                >
+                  {todo ? "Modificar" : "Agregar"}
+                </Text>
+              )}
+            </Pressable>
+          </ScrollView>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
     </>
   )
 }

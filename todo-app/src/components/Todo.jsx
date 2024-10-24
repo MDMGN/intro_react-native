@@ -1,12 +1,58 @@
-import { View, Text, StyleSheet } from "react-native"
+import { View, Text, StyleSheet, Switch, Button, Alert } from "react-native"
 
-export function Todo({ todo }) {
-  const { id, title, date, description } = todo
+export function Todo({ todo, handleUpdateTodos, setTodo }) {
+  const { id, title, date, description, completed } = todo
+
+  const handleDeleteTodo = () => {
+    Alert.alert(
+      "¿Seguro que deseas eliminar la tarea?",
+      `Eliminar tarea ${title}`,
+      [
+        {
+          style: "cancel",
+          text: "Cancelar",
+        },
+        {
+          style: "default",
+          text: "Aceptar",
+          onPress: () => handleUpdateTodos(id),
+        },
+      ]
+    )
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.label}>Fecha: {<Text>{date}</Text>}</Text>
       <Text style={styles.label}>Descripción:{<Text>{description}</Text>}</Text>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <Text style={{ color: "#fff", fontWeight: "500", fontSize: 18 }}>
+          {completed ? "Completada" : "No completada"}{" "}
+        </Text>
+        <Switch
+          value={completed}
+          onValueChange={() =>
+            handleUpdateTodos({ ...todo, completed: !completed })
+          }
+        />
+      </View>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-around",
+          marginVertical: 20,
+        }}
+      >
+        <Button title="Eliminar" color={"#f00"} onPress={handleDeleteTodo} />
+        <Button title="Modificar" onPress={() => setTodo(todo)} />
+      </View>
     </View>
   )
 }
@@ -21,7 +67,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     paddingLeft: 20,
     borderRadius: 10,
-    height: 200,
+    height: 250,
     backgroundColor: "rgba(0,0,0,.8)",
   },
   title: {
