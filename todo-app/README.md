@@ -287,6 +287,7 @@ npm install react-native-input-select
 ```js
 export default function App() {
   // Crea un estado para el filtro
+
   const [filter, setFilter] = useState(null)
   // Agrega esté nuevo componente en App.jsx
   <DropdownSelect
