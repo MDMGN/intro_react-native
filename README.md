@@ -22,6 +22,8 @@
 18. [Uso de `Modal`](#18-uso-de-modal)
 19. [Paso de Props en React Native](#19-paso-de-props-en-react-native)
 20. [React DevTools](#20-react-developer-tools)
+21. [memo, useMemo, useCallBack](#21-memorización)
+22. [Custom Hooks](#22-custom-hooks-en-react-native)
 
 ---
 
@@ -737,3 +739,261 @@ La herramienta **react-devtools** es esencial para cualquier desarrollador de Re
 [Regresar al índice](#índice)
 
 React Native y Expo forman un conjunto de herramientas poderosas para el desarrollo móvil. Con los conceptos tratados en este temario, incluyendo el uso de hooks, la optimización del rendimiento y el manejo de componentes como `FlatList` y `Modal`, ahora tienes una base sólida para comenzar a desarrollar aplicaciones móviles eficientes y escalables. Además, conceptos como el renderizado condicional y el paso de props son esenciales para crear interfaces dinámicas y funcionales.
+
+### 21. Memorización
+
+`React.memo`, `useMemo`, `useCallBack` son mecanismos de optimización en React que te permite evitar renders innecesarios de componentes funcionales. Aquí te explico qué es, cómo funciona y cuándo usarlo.
+
+### ¿Qué es `React.memo` , `useMemo`, `useCallBack`?
+
+`React.memo` es una función de orden superior que permite envolver un componente funcional para que solo se vuelva a renderizar cuando sus props cambian. Esto es especialmente útil para componentes que reciben props que no cambian frecuentemente y que son costosos de renderizar.
+
+### ¿Cómo funciona?
+
+Cuando un componente está envuelto en `React.memo`, React compara las props actuales con las anteriores. Si las props no han cambiado, React omite el renderizado del componente, lo que puede mejorar el rendimiento en aplicaciones grandes.
+
+### Ejemplo de uso
+
+Aquí hay un ejemplo simple que muestra cómo usar `React.memo`:
+
+```javascript
+import React from "react"
+
+// Componente funcional que se va a memorizar
+const TodoItem = React.memo(({ todo, onToggle }) => {
+  console.log("Rendering:", todo.title)
+
+  return (
+    <View onPress={() => onToggle(todo.id)}>
+      {todo.completed ? (
+        <Text>Completado: {todo.title}</Text>
+      ) : (
+        <Text>Tarea no completada: {todo.title}</Text>
+      )}
+    </View>
+  )
+})
+
+// Componente principal que utiliza TodoItem
+const TodoList = ({ todos, onToggle }) => {
+  return (
+    <View>
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={todos}
+        keyExtractor={(todo) => todo.id}
+        renderItem={({ item }) => <TodoItem todo={item} onToggle={onToggle} />}
+      />
+    </View>
+  )
+}
+```
+
+---
+
+En este ejemplo, `TodoItem` solo se volverá a renderizar si las props `todo` o `onToggle` cambian. Si el padre `TodoList` se renderiza nuevamente, pero las props de `TodoItem` no han cambiado, React no volverá a renderizar `TodoItem`.
+
+### ¿Cuándo usar `React.memo`?
+
+- **Componentes que reciben props estáticas**: Si tu componente recibe props que son relativamente estáticas y no cambian con frecuencia, `React.memo` puede ayudarte a evitar renders innecesarios.
+
+- **Renders costosos**: Si tu componente realiza cálculos intensivos o tiene una renderización compleja, `React.memo` puede ayudarte a optimizar su rendimiento.
+
+### ¿Cómo se compara con `useMemo` y `useCallback`?
+
+1. **`React.memo`**:
+
+   - Se usa para memorizar el resultado de un componente entero.
+   - Comparte props para determinar si el componente debe volver a renderizarse.
+   - Se aplica a componentes funcionales.
+
+2. **`useMemo`**:
+
+   - Se usa para memorizar valores calculados (resultado de funciones).
+   - Solo se recalcula el valor cuando sus dependencias cambian.
+
+3. **`useCallback`**:
+   - Se usa para memorizar funciones, evitando que se creen nuevas instancias de funciones en cada renderizado.
+   - Solo se vuelve a crear la función cuando sus dependencias cambian.
+
+### Ejemplo de combinación
+
+En un componente más complejo, podrías usar `React.memo` junto con `useMemo` y `useCallback` para optimizar el rendimiento:
+
+```javascript
+import React, { useState, useCallback, useMemo } from "react"
+
+const TodoItem = React.memo(({ todo, onToggle }) => {
+  console.log("Rendering:", todo.title)
+
+  return (
+    <View onPress={() => onToggle(todo.id)}>
+      {todo.completed ? (
+        <Text>Completado: {todo.title}</Text>
+      ) : (
+        <Text>Tarea no completada: {todo.title}</Text>
+      )}
+    </View>
+  )
+})
+
+const TodoList = ({ todos, onToggle }) => {
+  const renderedTodos = useMemo(() => {
+    return (
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={todos}
+        keyExtractor={(todo) => todo.id}
+        renderItem={({ item }) => <TodoItem todo={item} onToggle={onToggle} />}
+      />
+    )
+  }, [todos, onToggle])
+
+  return renderedTodos
+}
+
+const App = () => {
+  const [todos, setTodos] = useState([])
+
+  const toggleTodo = useCallback((id) => {
+    setTodos((todos) =>
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    )
+  }, [])
+
+  return <TodoList todos={todos} onToggle={toggleTodo} />
+}
+```
+
+### Consideraciones
+
+- **Comparación de props**: Por defecto, `React.memo` realiza una comparación superficial de las props. Si necesitas una comparación más profunda, puedes proporcionar una función de comparación como segundo argumento.
+
+```javascript
+const TodoItem = React.memo(
+  ({ todo, onToggle }) => {
+    // ...
+  },
+  (prevProps, nextProps) => {
+    return prevProps.todo.id === nextProps.todo.id // comparación personalizada
+  }
+)
+```
+
+- **Sobreuso**: Aunque `React.memo` puede mejorar el rendimiento, su uso excesivo o innecesario puede complicar el código sin proporcionar beneficios significativos. Asegúrate de usarlo solo cuando realmente lo necesites.
+
+### Conclusión
+
+`React.memo` es una herramienta poderosa para optimizar el rendimiento de tus componentes funcionales, especialmente en aplicaciones grandes. Combinado con `useMemo` y `useCallback`, puede ayudarte a crear aplicaciones más eficientes y reactivas. Sin embargo, como siempre en el desarrollo, es importante equilibrar la optimización con la legibilidad y la mantenibilidad del código.
+
+---
+
+### 22. Custom Hooks en React Native
+
+**Los Custom Hooks** son funciones en React/React Native que permiten encapsular lógica reutilizable utilizando el sistema de hooks. Ayudan a reducir la duplicación de código y a organizar lógicas complejas en aplicaciones móviles de manera eficiente.
+
+#### ¿Por qué usar Custom Hooks?
+
+1. **Reutilización de Lógica**: Los Custom Hooks permiten encapsular lógica que puede compartirse entre varios componentes.
+2. **Mejor Mantenimiento**: Facilitan la separación de preocupaciones, haciendo que el código sea más legible y fácil de mantener.
+3. **Composición de Hooks**: Se pueden combinar diferentes hooks (como `useState`, `useEffect`, etc.) para crear funcionalidades más complejas.
+
+#### Sintaxis Básica
+
+Un Custom Hook es solo una función JavaScript que:
+
+- Usa otros hooks de React (como `useState`, `useEffect`, etc.).
+- Comienza con el prefijo `use` (por convención), como `useFetchData`, `useAuth`, etc.
+- Retorna datos o funciones que serán usados en el componente que lo invoca.
+
+```javascript
+import { useState, useEffect } from "react"
+
+function useCustomHook() {
+  const [state, setState] = useState(initialValue)
+
+  useEffect(() => {
+    // Lógica de efecto
+    return () => {
+      // Limpieza (si es necesario)
+    }
+  }, [])
+
+  // Retornamos lo que necesite el componente
+  return { state, setState }
+}
+```
+
+#### Ejemplo de Custom Hook
+
+Un ejemplo común es un hook que se encarga de hacer _fetching_ de datos, encapsulando toda la lógica necesaria para gestionar el estado de carga y errores.
+
+```javascript
+import { useState, useEffect } from "react"
+import axios from "axios"
+
+function useFetch(url) {
+  const [data, setData] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(url)
+        setData(response.data)
+      } catch (err) {
+        setError(err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [url])
+
+  return { data, loading, error }
+}
+
+export default useFetch
+```
+
+#### Uso del Custom Hook en un Componente
+
+Una vez que has creado el custom hook, puedes usarlo en tus componentes como cualquier otro hook.
+
+```javascript
+import React from "react"
+import { View, Text, ActivityIndicator } from "react-native"
+import useFetch from "./hooks/useFetch"
+
+function MyComponent() {
+  const { data, loading, error } = useFetch("https://api.example.com/data")
+
+  if (loading) return <ActivityIndicator />
+  if (error) return <Text>Error: {error.message}</Text>
+
+  return (
+    <View>
+      <Text>{JSON.stringify(data)}</Text>
+    </View>
+  )
+}
+
+export default MyComponent
+```
+
+#### Buenas Prácticas
+
+1. **Usa el prefijo `use`**: Esto permite que React detecte que es un hook y puede aplicar reglas de hooks.
+2. **Encapsula una única responsabilidad**: Mantén los hooks con una única tarea clara y concisa.
+3. **Evita lógica pesada**: No abuses de los hooks para manejar toda la lógica del negocio; solo encapsula lógica de estado y efectos.
+4. **Retorna solo lo necesario**: Exporta solo el estado y las funciones que el componente necesita para evitar complejidad innecesaria.
+
+---
+
+### Conclusión
+
+Usar Custom Hooks en React Native ayuda a escribir código más limpio, más modular y facilita la reutilización en la aplicación móvil.
