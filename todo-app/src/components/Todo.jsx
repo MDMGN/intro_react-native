@@ -1,8 +1,7 @@
 import { View, Text, StyleSheet, Switch, Button, Alert } from "react-native"
 import { formatDate } from "../helpers"
-import React from "react"
 
-export const Todo = React.memo(({ todo, handleUpdateTodos, setTodo }) => {
+export function Todo({ todo, handleUpdateTodos, setTodo }) {
   const { id, title, date, description, completed } = todo
 
   const handleDeleteTodo = () => {
@@ -22,7 +21,6 @@ export const Todo = React.memo(({ todo, handleUpdateTodos, setTodo }) => {
       ]
     )
   }
-  console.log("Dese MEmo")
 
   return (
     <View style={styles.container}>
@@ -58,7 +56,7 @@ export const Todo = React.memo(({ todo, handleUpdateTodos, setTodo }) => {
       </View>
     </View>
   )
-})
+}
 
 const styles = StyleSheet.create({
   container: {
