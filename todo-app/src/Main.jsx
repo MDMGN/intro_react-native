@@ -72,9 +72,9 @@ export default function Main() {
   console.log("Desde app")
   return (
     <>
+      <StatusBar style="" backgroundColor="" />
       <BackgroundRotateRound />
       <View style={styles.container}>
-        <StatusBar mode="auto" />
         <Text
           style={{
             fontWeight: "bold",
