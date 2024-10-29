@@ -8,7 +8,7 @@ export const ThemeProvider = ({ children }) => {
 
   const [theme, setTheme] = useState("light")
   useEffect(() => {
-    console.log(colorScheme)
+    setTheme(colorScheme)
   }, [colorScheme])
 
   return (
