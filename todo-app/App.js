@@ -17,14 +17,14 @@ export default function App() {
     {
       id: 1,
       title: "Tarea 1",
-      date: "",
+      date: new Date("2024-09-05 19:28:07"),
       description: "",
       completed: false,
     },
     {
       id: 2,
       title: "Tarea 2",
-      date: "",
+      date: new Date(),
       description: "",
 
       completed: false,
@@ -33,7 +33,7 @@ export default function App() {
       id: 3,
       title: "Tarea 3",
       description: "",
-      date: "",
+      date: new Date("2028-09-05 19:28:07"),
       completed: false,
     },
   ]) // TODOS STATE

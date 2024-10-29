@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet, Switch, Button, Alert } from "react-native"
+import { formatDate } from "../helpers"
 
 export function Todo({ todo, handleUpdateTodos, setTodo }) {
   const { id, title, date, description, completed } = todo
@@ -24,7 +25,7 @@ export function Todo({ todo, handleUpdateTodos, setTodo }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
-      <Text style={styles.label}>Fecha: {<Text>{date}</Text>}</Text>
+      <Text style={styles.label}>Fecha: {<Text>{formatDate(date)}</Text>}</Text>
       <Text style={styles.label}>Descripción:{<Text>{description}</Text>}</Text>
       <View
         style={{

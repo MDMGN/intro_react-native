@@ -13,14 +13,14 @@ function DatePicker({ value, name, onChangeText, ...otherProps }, ref) {
     setShow(false)
     if (type !== "dismissed") {
       setDate(currentDate)
-      onChangeText(name, formatDate(date))
+      onChangeText(name, date)
     }
   }
 
   return (
     <>
       <InputTextField
-        value={value}
+        value={value ? formatDate(date) : null}
         onFocus={() => setShow(true)}
         ref={ref}
         {...otherProps}
