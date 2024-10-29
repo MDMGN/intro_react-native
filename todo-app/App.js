@@ -1,4 +1,5 @@
 import { ThemeProvider } from "./src/context/ThemeContext"
+import Main from "./src/Main"
 
 export default function App() {
   return (
