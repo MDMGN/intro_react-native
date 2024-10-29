@@ -7,7 +7,7 @@ import {
   Form,
   Message,
   Todos,
-} from "./src/components"
+} from "./components"
 import Toast from "react-native-toast-message"
 import DropdownSelect from "react-native-input-select"
 
