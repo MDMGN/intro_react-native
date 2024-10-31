@@ -12,7 +12,6 @@ import {
 import withDefaultStyledContainer from "../themes/withDefaultStyledContainer"
 import InputTextField from "./InputTextField"
 import DatePicker from "./DatePicker"
-import Toast from "react-native-toast-message"
 import useForm from "../hooks/useForm"
 
 function Form({ setOpen, setTodos, todo, setTodo, handleUpdateTodos }) {
@@ -24,6 +23,8 @@ function Form({ setOpen, setTodos, todo, setTodo, handleUpdateTodos }) {
     },
     setTodos,
     handleUpdateTodos,
+    setTodo,
+    todo,
   })
 
   return (
