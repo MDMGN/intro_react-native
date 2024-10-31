@@ -1,6 +1,5 @@
-import { View, Text } from "react-native"
-import React from "react"
 import Toast from "react-native-toast-message"
+import { useEffect, useRef, useState } from "react"
 
 export default function useForm({
   initialState,
@@ -8,6 +7,7 @@ export default function useForm({
   handleUpdateTodos,
   setTodo,
   todo,
+  setOpen,
 }) {
   const inputRefs = useRef({})
 

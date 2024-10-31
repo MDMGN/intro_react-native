@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react"
 import {
   Text,
   Pressable,
@@ -25,8 +24,9 @@ function Form({ setOpen, setTodos, todo, setTodo, handleUpdateTodos }) {
     handleUpdateTodos,
     setTodo,
     todo,
+    setOpen,
   })
-
+  console.log(data)
   return (
     <>
       <KeyboardAvoidingView

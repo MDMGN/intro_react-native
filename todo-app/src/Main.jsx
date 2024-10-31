@@ -89,9 +89,9 @@ export default function Main() {
       filterTodos.sort((a, b) => (b.date > a.date ? 1 : -1))
     }
     return filterTodos
-  }, [filter, sorted])
+  }, [filter, sorted, todos])
 
-  console.log("Desde app")
+  console.log(todos)
   return (
     <>
       <StatusBar
