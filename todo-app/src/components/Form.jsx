@@ -22,6 +22,8 @@ function Form({ setOpen, setTodos, todo, setTodo, handleUpdateTodos }) {
       description: "",
       date: "",
     },
+    setTodos,
+    handleUpdateTodos,
   })
 
   return (

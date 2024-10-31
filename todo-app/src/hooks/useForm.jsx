@@ -1,7 +1,7 @@
 import { View, Text } from "react-native"
 import React from "react"
 
-export default function useForm({ initialState }) {
+export default function useForm({ initialState, setTodos, handleUpdateTodos }) {
   const inputRefs = useRef({})
 
   const [data, setData] = useState(initialState)
