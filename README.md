@@ -43,7 +43,7 @@ import { Text, View } from "react-native"
 const App = () => {
   return (
     <View>
-      <Text>Hello, React Native!</Text>
+      <TextThemeTheme>Hello, React Native!</TextTheme>
     </View>
   )
 }
@@ -213,7 +213,7 @@ import { Text, View } from "react-native"
 const App = () => {
   return (
     <View>
-      <Text>Nombre de la app: {Constants.manifest.name}</Text>
+      <TextThemeTheme>Nombre de la app: {Constants.manifest.name}</TextTheme>
     </View>
   )
 }
@@ -234,7 +234,7 @@ JSX es una extensión de JavaScript que permite escribir código que se parece a
 const App = () => {
   return (
     <View>
-      <Text>Hello World</Text>
+      <TextThemeTheme>Hello World</TextTheme>
     </View>
   )
 }
@@ -262,7 +262,7 @@ import { StyleSheet, View, Text } from "react-native"
 const App = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Hello World</Text>
+      <TextTheme style={styles.text}>Hello World</TextTheme>
     </View>
   )
 }
@@ -312,7 +312,7 @@ const App = () => {
 
   return (
     <View>
-      <Text>Contador: {count}</Text>
+      <TextThemeTheme>Contador: {count}</TextTheme>
       <Button title="Incrementar" onPress={() => setCount(count + 1)} />
     </View>
   )
@@ -394,7 +394,7 @@ const App = () => {
     console.log("Me cada vez que la data cambia")
   }, [data])
 
-  return <Text>{data ? data.name : "Cargando..."}</Text>
+  return <TextThemeTheme>{data ? data.name : "Cargando..."}</TextTheme>
 }
 ```
 
@@ -418,7 +418,7 @@ const App = () => {
 
   return (
     <Button title="Incrementar" onPress={() => (count.current += 1)}>
-      <Text>{count.current}</Text>
+      <TextThemeTheme>{count.current}</TextTheme>
     </Button>
   )
 }
@@ -455,7 +455,10 @@ const App = () => {
   const data = [{ key: "Devin" }, { key: "Dan" }, { key: "Dominic" }]
 
   return (
-    <FlatList data={data} renderItem={({ item }) => <Text>{item.key}</Text>} />
+    <FlatList
+      data={data}
+      renderItem={({ item }) => <TextThemeTheme>{item.key}</TextTheme>}
+    />
   )
 }
 
@@ -484,7 +487,7 @@ const App = () => {
         backgroundColor: pressed ? "blue" : "grey",
       })}
     >
-      <Text>Presionar</Text>
+      <TextThemeTheme>Presionar</TextTheme>
     </Pressable>
   )
 }
@@ -527,9 +530,9 @@ const App = () => {
 
   return (
     <View>
-      <Text>
+      <TextThemeTheme>
         {loggedIn ? "Bienvenido de nuevo" : "Por favor, inicia sesión"}
-      </Text>
+      </TextTheme>
       <Button
         title={loggedIn ? "Cerrar sesión" : "Iniciar sesión"}
         onPress={() => setLoggedIn(!loggedIn)}
@@ -563,7 +566,7 @@ const App = () => {
     <View>
       <Modal transparent={true} visible={modalVisible} animationType="slide">
         <View style={{ marginTop: 50 }}>
-          <Text>¡Este es un modal!</Text>
+          <TextThemeTheme>¡Este es un modal!</TextTheme>
           <Button title="Cerrar modal" onPress={() => setModalVisible(false)} />
         </View>
       </Modal>
@@ -591,7 +594,7 @@ import React from "react"
 import { View, Text } from "react-native"
 
 const Greeting = ({ name }) => {
-  return <Text>Hola, {name}!</Text>
+  return <TextThemeTheme>Hola, {name}!</TextTheme>
 }
 
 const App = () => {
@@ -766,9 +769,9 @@ const TodoItem = React.memo(({ todo, onToggle }) => {
   return (
     <View onPress={() => onToggle(todo.id)}>
       {todo.completed ? (
-        <Text>Completado: {todo.title}</Text>
+        <TextThemeTheme>Completado: {todo.title}</TextTheme>
       ) : (
-        <Text>Tarea no completada: {todo.title}</Text>
+        <TextThemeTheme>Tarea no completada: {todo.title}</TextTheme>
       )}
     </View>
   )
@@ -829,9 +832,9 @@ const TodoItem = React.memo(({ todo, onToggle }) => {
   return (
     <View onPress={() => onToggle(todo.id)}>
       {todo.completed ? (
-        <Text>Completado: {todo.title}</Text>
+        <TextThemeTheme>Completado: {todo.title}</TextTheme>
       ) : (
-        <Text>Tarea no completada: {todo.title}</Text>
+        <TextThemeTheme>Tarea no completada: {todo.title}</TextTheme>
       )}
     </View>
   )
@@ -973,11 +976,11 @@ function MyComponent() {
   const { data, loading, error } = useFetch("https://api.example.com/data")
 
   if (loading) return <ActivityIndicator />
-  if (error) return <Text>Error: {error.message}</Text>
+  if (error) return <TextThemeTheme>Error: {error.message}</TextTheme>
 
   return (
     <View>
-      <Text>{JSON.stringify(data)}</Text>
+      <TextThemeTheme>{JSON.stringify(data)}</TextTheme>
     </View>
   )
 }

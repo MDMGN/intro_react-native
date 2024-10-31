@@ -2,6 +2,7 @@ import { View, Text, Switch } from "react-native"
 import React, { useContext } from "react"
 import DropdownSelect from "react-native-input-select"
 import { ThemeContext } from "../context/ThemeContext"
+import TextTheme from "./TextTheme"
 
 export function Header({ setFilter, setSorted, sorted }) {
   const { theme, setTheme } = useContext(ThemeContext)

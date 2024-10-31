@@ -1,8 +1,12 @@
 import { View, Text, StyleSheet, Switch, Button, Alert } from "react-native"
 import { formatDate } from "../helpers"
+import TextTheme from "./TextTheme"
+import { useContext } from "react"
+import { ThemeContext } from "../context/ThemeContext"
 
 export function Todo({ todo, handleUpdateTodos, setTodo }) {
   const { id, title, date, description, completed } = todo
+  const { theme } = useContext(ThemeContext)
 
   const handleDeleteTodo = () => {
     Alert.alert(
@@ -23,10 +27,22 @@ export function Todo({ todo, handleUpdateTodos, setTodo }) {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.label}>Fecha: {<Text>{formatDate(date)}</Text>}</Text>
-      <Text style={styles.label}>Descripción:{<Text>{description}</Text>}</Text>
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor:
+            theme === "dark" ? "rgba(250,250,250,.8)" : "rgba(0,0,0,.8)",
+        },
+      ]}
+    >
+      <TextTheme style={styles.title}>{title}</TextTheme>
+      <TextTheme style={styles.label}>
+        Fecha: {<TextTheme>{formatDate(date)}</TextTheme>}
+      </TextTheme>
+      <TextTheme style={styles.label}>
+        Descripción:{<TextTheme>{description}</TextTheme>}
+      </TextTheme>
       <View
         style={{
           flexDirection: "row",
@@ -34,9 +50,9 @@ export function Todo({ todo, handleUpdateTodos, setTodo }) {
           justifyContent: "space-between",
         }}
       >
-        <Text style={{ color: "#fff", fontWeight: "500", fontSize: 18 }}>
+        <TextTheme style={{ color: "#fff", fontWeight: "500", fontSize: 18 }}>
           {completed ? "Completada" : "No completada"}{" "}
-        </Text>
+        </TextTheme>
         <Switch
           value={completed}
           onValueChange={() =>
@@ -69,7 +85,6 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     borderRadius: 10,
     height: 250,
-    backgroundColor: "rgba(0,0,0,.8)",
   },
   title: {
     textAlign: "center",

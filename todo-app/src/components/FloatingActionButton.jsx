@@ -1,4 +1,5 @@
 import { Text, Pressable, StyleSheet } from "react-native"
+import TextTheme from "./TextTheme"
 
 /**
  * @argument {'add'|'remove'} type
@@ -16,9 +17,9 @@ export function FloatingActionButton({ type, onPress }) {
       ]}
     >
       {({ pressed }) => (
-        <Text style={[styles.icon, { fontSize: pressed ? 25 : 35 }]}>
+        <TextTheme style={[styles.icon, { fontSize: pressed ? 25 : 35 }]}>
           {type === "add" ? "+" : "-"}
-        </Text>
+        </TextTheme>
       )}
     </Pressable>
   )

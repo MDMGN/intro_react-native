@@ -13,61 +13,17 @@ import withDefaultStyledContainer from "../themes/withDefaultStyledContainer"
 import InputTextField from "./InputTextField"
 import DatePicker from "./DatePicker"
 import Toast from "react-native-toast-message"
+import useForm from "../hooks/useForm"
 
 function Form({ setOpen, setTodos, todo, setTodo, handleUpdateTodos }) {
-  const inputRefs = useRef({})
-
-  const [data, setData] = useState({
-    title: "",
-    date: "",
-    description: "",
+  const { data, handleChangeText, onSubmit, inputRefs } = useForm({
+    initialState: {
+      title: "",
+      description: "",
+      date: "",
+    },
   })
 
-  const handleChangeText = (name, value, setError) => {
-    setData((previusValue) => ({
-      ...previusValue,
-      [name]: value,
-    }))
-    if (setError) {
-      setError(() => value.trim() === "")
-    }
-  }
-
-  const onSubmit = () => {
-    const input = Object.keys(data).find((key) =>
-      typeof data[key] === "string" ? data[key].trim() === "" : false
-    )
-
-    if (input) {
-      inputRefs.current[input].focus()
-      return
-    }
-
-    if (todo) {
-      handleUpdateTodos(data)
-      setTodo(null)
-    } else {
-      setTodos((previusValue) => [
-        ...previusValue,
-        {
-          id: Date.now().toString(36),
-          ...data,
-          completed: false,
-        },
-      ])
-      setOpen(false)
-      Toast.show({
-        text1: `Se agregado la tarea ${data.title}`,
-        type: "success",
-      })
-    }
-  }
-
-  useEffect(() => {
-    if (todo) setData(todo)
-  }, [])
-
-  console.log({ data, todo })
   return (
     <>
       <KeyboardAvoidingView

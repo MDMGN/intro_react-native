@@ -11,7 +11,7 @@ export default function withDefaultStyledContainer(Component) {
         style={[
           styles.container,
           {
-            backgroundColor: theme === "dark" ? "#000" : "#fff",
+            backgroundColor: theme === "dark" ? "#000" : "#1A2531",
           },
         ]}
       >

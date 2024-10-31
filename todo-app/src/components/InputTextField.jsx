@@ -1,5 +1,6 @@
 import { forwardRef, useState } from "react"
-import { View, Text, StyleSheet, TextInput } from "react-native"
+import { View, StyleSheet, TextInput, Text } from "react-native"
+import TextTheme from "./TextTheme"
 
 function InputTextField(
   { name, title, type, placeholder = "", onChangeText, ...otherProps },
@@ -8,7 +9,7 @@ function InputTextField(
   const [error, setError] = useState(false)
   return (
     <View style={styles.formGroup}>
-      <Text style={styles.label}>{title}:</Text>
+      <TextTheme style={styles.label}>{title}:</TextTheme>
       <TextInput
         ref={ref}
         keyboardType={type}

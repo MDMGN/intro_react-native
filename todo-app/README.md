@@ -14,8 +14,8 @@ export function Form({ handle }) {
     // ....
     // Separa este contenido de UI que se está repitiendo en nuestro componente Form
     <View style={styles.formGroup}>
-      <Text style={styles.label}>Título:</Text>
-      <TextInput
+      <TextTheme style={styles.label}>Título:</TextTheme>
+      <TextThemeInput
         keyboardType="text"
         style={styles.input}
         placeholder={"Introduzca un título"}
@@ -103,7 +103,7 @@ export function Form({ setOpen, setTodos }) {
 ```js
 // Modifica el botón de agregar para mejorar la experiencia de usuario
 <Pressable style={styles.btnAdd} onPress={handleAddTODO}>
-  <Text style={styles.btnText}>Agregar</Text> // Texto del botón
+  <TextTheme style={styles.btnText}>Agregar</TextTheme> // Texto del botón
 </Pressable>
 ```
 
@@ -164,12 +164,12 @@ export function Todo({ todo }) {
 
   return (
     <View>
-      <Text>{title}</Text>
-      <Text>{description}</Text>
-      <Text>{date}</Text>
+      <TextThemeTheme>{title}</TextTheme>
+      <TextThemeTheme>{description}</TextTheme>
+      <TextThemeTheme>{date}</TextTheme>
 
       <Pressable onPress={handleDelete}>
-        <Text>Eliminar</Text>
+        <TextThemeTheme>Eliminar</TextTheme>
       </Pressable>
     </View>
   )
@@ -244,7 +244,7 @@ export default function App() {
         gap: 30,
       }}
     >
-      <Text
+      <TextTheme
         style={{
           fontWeight: "bold",
           fontSize: 20,
@@ -252,7 +252,7 @@ export default function App() {
         }}
       >
         {isDarkmode ? "Dark Mode" : "Light Mode"}
-      </Text>
+      </TextTheme>
       <Switch
         style={{
           alignSelf: "flex-end",

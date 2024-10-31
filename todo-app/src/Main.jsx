@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar"
-import { useMemo, useState } from "react"
+import { useContext, useEffect, useMemo, useState } from "react"
 import { StyleSheet, Text, View, Modal, Switch } from "react-native"
 import {
   BackgroundRotateRound,
@@ -10,6 +10,8 @@ import {
   Todos,
 } from "./components"
 import Toast from "react-native-toast-message"
+import { ThemeContext } from "./context/ThemeContext"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 export default function Main() {
   const [open, setOpen] = useState(false) // Modal State
@@ -29,7 +31,6 @@ export default function Main() {
       title: "Tarea 2",
       date: new Date(),
       description: "",
-
       completed: false,
     },
     {
@@ -40,6 +41,26 @@ export default function Main() {
       completed: false,
     },
   ]) // TODOS STATE
+
+  useEffect(() => {
+    const getlocalTodos = async () => {
+      const localTodos = await AsyncStorage.getItem("todos")
+      if (localTodos) {
+        setTodos((currentTodos) => [...currentTodos, ...JSON.parse(localTodos)])
+      }
+    }
+    getlocalTodos()
+  }, [])
+
+  useEffect(() => {
+    const updatedTodos = async () => {
+      const newTodos = JSON.stringify(todos)
+      await AsyncStorage.setItem("todos", newTodos)
+    }
+
+    updatedTodos()
+  }, [todos])
+
   const handleFAB = () => setOpen(!open)
 
   const handleUpdateTodos = (todoUpdate) => {
@@ -55,6 +76,7 @@ export default function Main() {
       )
     }
   }
+  const { theme } = useContext(ThemeContext)
 
   const sortedAndFilterTodos = useMemo(() => {
     console.log("Desde useMemo")
@@ -72,7 +94,10 @@ export default function Main() {
   console.log("Desde app")
   return (
     <>
-      <StatusBar style="" backgroundColor="" />
+      <StatusBar
+        style={theme === "dark" ? "light" : "dark"}
+        backgroundColor={theme === "dark" ? "#000" : "#fff"}
+      />
       <BackgroundRotateRound />
       <View style={styles.container}>
         <Header setFilter={setFilter} sorted={sorted} setSorted={setSorted} />
