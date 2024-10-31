@@ -5,11 +5,11 @@ import {
   BackgroundRotateRound,
   FloatingActionButton,
   Form,
+  Header,
   Message,
   Todos,
 } from "./components"
 import Toast from "react-native-toast-message"
-import DropdownSelect from "react-native-input-select"
 
 export default function Main() {
   const [open, setOpen] = useState(false) // Modal State
@@ -75,50 +75,7 @@ export default function Main() {
       <StatusBar style="" backgroundColor="" />
       <BackgroundRotateRound />
       <View style={styles.container}>
-        <Text
-          style={{
-            fontWeight: "bold",
-            color: "#fff",
-            fontSize: 30,
-          }}
-        >
-          TODO APP
-        </Text>
-        <DropdownSelect
-          label="Filtrar por..."
-          labelStyle={{ fontWeight: "bold", fontSize: 15, color: "#fff" }}
-          options={[
-            {
-              label: "Todos",
-              value: null,
-            },
-            {
-              label: "Completadas",
-              value: true,
-            },
-            {
-              label: "No completadas",
-              value: false,
-            },
-          ]}
-          onValueChange={setFilter}
-          primaryColor={"blue"}
-          dropdownContainerStyle={{ width: "80%", color: "#000" }}
-        />
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            width: "100%",
-            paddingHorizontal: 25,
-          }}
-        >
-          <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 17 }}>
-            Fecha mas reciente:
-          </Text>
-          <Switch value={sorted} onValueChange={setSorted} />
-        </View>
+        <Header setFilter={setFilter} sorted={sorted} setSorted={setSorted} />
 
         <Modal visible={!!todo || open} animationType={"slide"}>
           <Form
