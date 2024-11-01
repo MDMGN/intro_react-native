@@ -19,8 +19,8 @@ export function BackgroundRotateRound() {
 const styles = StyleSheet.create({
   background: {
     position: "absolute",
-    marginTop: 50,
-    top: -250,
+    marginTop: 350,
+    top: -350,
     right: 10,
     width: 1000,
     height: 1100,

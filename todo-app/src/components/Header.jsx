@@ -22,13 +22,14 @@ export function Header({ setFilter, setSorted, sorted }) {
         style={{
           flexDirection: "row",
           width: "100%",
-          justifyContent: "space-around",
+          justifyContent: "flex-end",
           alignItems: "center",
+          marginRight: 100,
         }}
       >
         <Text
           style={{
-            color: "#fff",
+            color: "#000",
             fontSize: 20,
             fontWeight: "bold",
             marginVertical: 20,
@@ -38,6 +39,13 @@ export function Header({ setFilter, setSorted, sorted }) {
         </Text>
         <Switch
           value={theme === "dark"}
+          style={{
+            transform: [
+              {
+                scale: 1.5,
+              },
+            ],
+          }}
           onValueChange={(value) => setTheme(value ? "dark" : "light")}
         />
       </View>
