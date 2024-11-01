@@ -18,35 +18,21 @@ export default function Main() {
   const [todo, setTodo] = useState(null)
   const [filter, setFilter] = useState(null)
   const [sorted, setSorted] = useState(false)
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      title: "Tarea 1",
-      date: new Date("2024-09-05 19:28:07"),
-      description: "",
-      completed: false,
-    },
-    {
-      id: 2,
-      title: "Tarea 2",
-      date: new Date(),
-      description: "",
-      completed: false,
-    },
-    {
-      id: 3,
-      title: "Tarea 3",
-      description: "",
-      date: new Date("2028-09-05 19:28:07"),
-      completed: false,
-    },
-  ]) // TODOS STATE
+  const [todos, setTodos] = useState([]) // TODOS STATE
 
   useEffect(() => {
     const getlocalTodos = async () => {
       const localTodos = await AsyncStorage.getItem("todos")
       if (localTodos) {
-        setTodos((currentTodos) => [...currentTodos, ...JSON.parse(localTodos)])
+        setTodos(() => [
+          ...JSON.parse(localTodos, (key, value) => {
+            if (key === "date") {
+              return new Date(value)
+            } else {
+              return value
+            }
+          }),
+        ])
       }
     }
     getlocalTodos()

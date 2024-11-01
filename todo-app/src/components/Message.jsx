@@ -3,7 +3,7 @@ import { View, Text } from "react-native"
 export function Message() {
   return (
     <View>
-      <TextTheme>No hay tareas</TextTheme>
+      <Text>No hay tareas</Text>
     </View>
   )
 }
