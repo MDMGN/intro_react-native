@@ -25,13 +25,9 @@ export default function Main() {
       const localTodos = await AsyncStorage.getItem("todos")
       if (localTodos) {
         setTodos(() => [
-          ...JSON.parse(localTodos, (key, value) => {
-            if (key === "date") {
-              return new Date(value)
-            } else {
-              return value
-            }
-          }),
+          ...JSON.parse(localTodos, (key, value) =>
+            key === "date" ? new Date(value) : value
+          ),
         ])
       }
     }
