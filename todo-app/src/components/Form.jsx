@@ -26,7 +26,7 @@ function Form({ setOpen, setTodos, todo, setTodo, handleUpdateTodos }) {
     todo,
     setOpen,
   })
-  console.log(data)
+
   return (
     <>
       <KeyboardAvoidingView

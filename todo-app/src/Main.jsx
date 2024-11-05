@@ -23,6 +23,7 @@ export default function Main() {
   useEffect(() => {
     const getlocalTodos = async () => {
       const localTodos = await AsyncStorage.getItem("todos")
+
       if (localTodos) {
         setTodos(() => [
           ...JSON.parse(localTodos, (key, value) =>
@@ -31,6 +32,7 @@ export default function Main() {
         ])
       }
     }
+
     getlocalTodos()
   }, [])
 
