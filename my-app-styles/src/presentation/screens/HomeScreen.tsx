@@ -1,12 +1,17 @@
 import { StyleSheet } from "react-native"
 import React from "react"
+import AntDesign from "@expo/vector-icons/AntDesign"
 import { ScrollView } from "react-native-gesture-handler"
 import { MenuItem } from "../components/home"
 
 export function HomeScreen() {
   return (
     <ScrollView style={styles.container}>
-      <MenuItem route="POSITION" title="Position" iconLeftName="totop" />
+      <MenuItem
+        route="POSITION"
+        title="Position"
+        iconLeftName={<AntDesign name="totop" size={20} />}
+      />
     </ScrollView>
   )
 }
