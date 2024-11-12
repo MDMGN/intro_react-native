@@ -3,10 +3,12 @@ import React from "react"
 import AntDesign from "@expo/vector-icons/AntDesign"
 import { ScrollView } from "react-native-gesture-handler"
 import { MenuItem } from "../components/home"
+import { Menu } from "react-native-paper"
 
 export function HomeScreen() {
   return (
     <ScrollView style={styles.container}>
+      <Menu.Item leadingIcon="redo" onPress={() => {}} title="Redo" />
       <MenuItem
         route="POSITION"
         title="Position"
@@ -19,6 +21,7 @@ export function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 20,
   },
   boxOrange: {
     position: "relative",

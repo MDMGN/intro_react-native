@@ -12,7 +12,7 @@ const Stack = createStackNavigator<StackProps>()
 
 export default function StackGroup() {
   return (
-    <Stack.Navigator initialRouteName="FLEX">
+    <Stack.Navigator>
       <Stack.Screen
         name="HOME"
         component={HomeScreen}

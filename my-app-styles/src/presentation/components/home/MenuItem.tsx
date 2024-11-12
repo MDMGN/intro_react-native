@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from "react-native"
+import { View, Text, Pressable, StyleSheet } from "react-native"
 import React from "react"
 import { type StackProps } from "../../navigation/StackGroup"
 import { useNavigation } from "@react-navigation/native"
@@ -15,12 +15,40 @@ export function MenuItem({ title, iconLeftName, route }: Props) {
   const navigation = useNavigation()
 
   return (
-    <View>
+    <View style={styles.container}>
       {iconLeftName}
-      <Text>{title}</Text>
+      <Text style={styles.title}>{title}</Text>
       <Pressable onPress={() => navigation.navigate(route as never)}>
         <AntDesign name="rightcircleo" size={24} color="black" />
       </Pressable>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    width: "70%",
+    justifyContent: "space-between",
+    alignItems: "center",
+    alignSelf: "center",
+    padding: 20,
+    borderWidth: 3.5,
+    borderRadius: 20,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
+
+    elevation: 8,
+  },
+  title: {
+    flex: 1,
+    marginLeft: 20,
+    textTransform: "uppercase",
+    fontWeight: "500",
+    lineHeight: 20,
+  },
+})
