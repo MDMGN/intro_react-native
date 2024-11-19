@@ -14,6 +14,11 @@ export function HomeScreen() {
         title="Position"
         iconLeftName={<AntDesign name="totop" size={20} />}
       />
+      <MenuItem
+        route="SLIDER"
+        title="Slider"
+        iconLeftName={<AntDesign name="totop" size={20} />}
+      />
     </ScrollView>
   )
 }

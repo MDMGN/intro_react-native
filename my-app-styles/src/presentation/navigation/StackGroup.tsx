@@ -1,11 +1,13 @@
 import { createStackNavigator } from "@react-navigation/stack"
 import { HomeScreen, PositionScreen } from "../screens"
 import FlexScreen from "../screens/FlexScreen"
+import SliderScreen from "../screens/SliderScreen"
 
 export type StackProps = {
   HOME: undefined
   POSITION: undefined
   FLEX: undefined
+  SLIDER: undefined
 }
 
 const Stack = createStackNavigator<StackProps>()
@@ -27,6 +29,11 @@ export default function StackGroup() {
         name="FLEX"
         component={FlexScreen}
         options={{ title: "Flexbox", headerTitleAlign: "center" }}
+      />
+      <Stack.Screen
+        name="SLIDER"
+        component={SliderScreen}
+        options={{ title: "Slider", headerTitleAlign: "center" }}
       />
     </Stack.Navigator>
   )

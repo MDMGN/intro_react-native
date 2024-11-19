@@ -1,17 +1,18 @@
-import { View, Image, Text, Button } from "react-native"
+import { View, Image, Text, ImageSourcePropType } from "react-native"
 import React from "react"
 
 type Props = {
-  path: () => any
+  path: ImageSourcePropType
+  title: string
   description: string
 }
 
-export function SliderItem({ path, description }: Props) {
+export function SliderItem({ path, description, title }: Props) {
   return (
     <View>
-      <Image source={path()} />
+      <Image source={path} />
+      <Text>{title}</Text>
       <Text> {description}</Text>
-      <Button title="" />
     </View>
   )
 }
