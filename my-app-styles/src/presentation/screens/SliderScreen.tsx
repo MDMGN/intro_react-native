@@ -1,6 +1,14 @@
-import { FlatList } from "react-native"
-import React from "react"
+import {
+  Button,
+  FlatList,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  View,
+} from "react-native"
+import React, { useRef, useState } from "react"
 import { SliderItem } from "../components/slider/SliderItem"
+import { NavigationProp } from "@react-navigation/native"
+import { StackProps } from "../navigation/StackGroup"
 
 const images = [
   {
@@ -35,19 +43,44 @@ const images = [
   },
 ]
 
-export default function SliderScreen() {
+export default function SliderScreen({
+  navigation,
+}: {
+  navigation: NavigationProp<StackProps>
+}) {
+  const refFlatList = useRef<FlatList>(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  const nextPage = (index: number) => {
+    refFlatList.current?.scrollToIndex({ index: index, animated: true })
+  }
+
+  const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const { contentOffset, layoutMeasurement } = event.nativeEvent
+
+    const currentIdx = Math.floor(contentOffset.x / layoutMeasurement.width)
+
+    setCurrentIndex(currentIdx < 0 ? 0 : currentIdx)
+  }
+
   return (
-    <FlatList
-      data={images}
-      horizontal
-      pagingEnabled
-      renderItem={({ item }) => (
-        <SliderItem
-          path={item.path}
-          title={item.title}
-          description={item.description}
-        />
-      )}
-    />
+    <View>
+      <FlatList
+        ref={refFlatList}
+        data={images}
+        horizontal
+        pagingEnabled
+        onScroll={onScroll}
+        scrollEnabled={false}
+        renderItem={({ item }) => (
+          <SliderItem
+            path={item.path}
+            title={item.title}
+            description={item.description}
+          />
+        )}
+      />
+      <Button title="Siguiente" onPress={() => nextPage(currentIndex + 1)} />
+    </View>
   )
 }
