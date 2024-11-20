@@ -2,7 +2,7 @@ import { useState } from "react"
 import { View, Text, ActivityIndicator } from "react-native"
 import { FlatList } from "react-native-gesture-handler"
 
-export default function ScrollInfinity() {
+export default function InfinityScroll() {
   const [numbers, setNumbers] = useState([1, 2, 3, 4, 5] as number[])
   const onLoadMore = () => {
     const newArray = Array.from(

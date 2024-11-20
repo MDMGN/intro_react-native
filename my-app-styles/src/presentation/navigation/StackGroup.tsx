@@ -2,7 +2,7 @@ import { createStackNavigator } from "@react-navigation/stack"
 import { HomeScreen, PositionScreen } from "../screens"
 import FlexScreen from "../screens/FlexScreen"
 import SliderScreen from "../screens/SliderScreen"
-import ScrollInfinity from "../screens/ScrollInfinity"
+import InfinityScroll from "../screens/InfinityScroll"
 
 export type StackProps = {
   HOME: undefined
@@ -39,8 +39,8 @@ export default function StackGroup() {
       />
       <Stack.Screen
         name="SCROLL"
-        component={ScrollInfinity}
-        options={{ title: "ScrollInfinity", headerTitleAlign: "center" }}
+        component={InfinityScroll}
+        options={{ title: "InfinityScroll", headerTitleAlign: "center" }}
       />
     </Stack.Navigator>
   )
