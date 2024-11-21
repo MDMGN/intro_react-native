@@ -21,7 +21,7 @@ export default function InfinityScroll() {
         onEndReachedThreshold={0.6}
         onEndReached={onLoadMore}
         ListFooterComponent={<ActivityIndicator size="large" />}
-        keyExtractor={(item, index) => index + ""}
+        keyExtractor={(item, index) => index + 1 + ""}
         renderItem={({ item }) => (
           <View
             style={{
