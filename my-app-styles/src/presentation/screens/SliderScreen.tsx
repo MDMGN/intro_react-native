@@ -68,6 +68,9 @@ export default function SliderScreen({
       <FlatList
         ref={refFlatList}
         data={images}
+        ItemSeparatorComponent={() => (
+          <View style={{ height: 1000, backgroundColor: "#fff" }}> </View>
+        )}
         horizontal
         pagingEnabled
         onScroll={onScroll}
