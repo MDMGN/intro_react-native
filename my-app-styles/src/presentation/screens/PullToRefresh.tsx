@@ -18,7 +18,11 @@ export default function PullToRefresh() {
   return (
     <ScrollView
       refreshControl={
-        <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
+        <RefreshControl
+          refreshing={isRefreshing}
+          onRefresh={onRefresh}
+          colors={["green", "blue", "red"]}
+        />
       }
     >
       {numbers.map((el) => (
