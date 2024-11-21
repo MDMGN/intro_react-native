@@ -3,6 +3,7 @@ import { HomeScreen, PositionScreen } from "../screens"
 import FlexScreen from "../screens/FlexScreen"
 import SliderScreen from "../screens/SliderScreen"
 import InfinityScroll from "../screens/InfinityScroll"
+import PullToRefresh from "../screens/PullToRefresh"
 
 export type StackProps = {
   HOME: undefined
@@ -10,6 +11,7 @@ export type StackProps = {
   FLEX: undefined
   SLIDER: undefined
   SCROLL: undefined
+  PULLTOREFRESH: undefined
 }
 
 const Stack = createStackNavigator<StackProps>()
@@ -41,6 +43,11 @@ export default function StackGroup() {
         name="SCROLL"
         component={InfinityScroll}
         options={{ title: "InfinityScroll", headerTitleAlign: "center" }}
+      />
+      <Stack.Screen
+        name="PULLTOREFRESH"
+        component={PullToRefresh}
+        options={{ title: "PullToRefresh", headerTitleAlign: "center" }}
       />
     </Stack.Navigator>
   )

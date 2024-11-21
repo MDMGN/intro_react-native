@@ -25,6 +25,11 @@ export function HomeScreen() {
           title="Scroll Infinity"
           iconLeftName={<AntDesign name="totop" size={20} />}
         />
+        <MenuItem
+          route="PULLTOREFRESH"
+          title="Pull to Refresh"
+          iconLeftName={<AntDesign name="totop" size={20} />}
+        />
       </View>
     </ScrollView>
   )

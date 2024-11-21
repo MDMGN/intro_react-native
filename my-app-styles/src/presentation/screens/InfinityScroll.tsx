@@ -3,11 +3,18 @@ import { View, Text, ActivityIndicator, Image } from "react-native"
 import { FlatList } from "react-native-gesture-handler"
 
 export default function InfinityScroll() {
-  const [numbers, setNumbers] = useState([1, 2, 3, 4, 5] as number[])
+  const [numbers, setNumbers] = useState([
+    "https://picsum.photos/id/1/200/300",
+    "https://picsum.photos/id/2/200/300",
+    "https://picsum.photos/id/3/200/300",
+    "https://picsum.photos/id/4/200/300",
+    "https://picsum.photos/id/5/200/300",
+  ] as string[])
   const onLoadMore = () => {
     const newArray = Array.from(
       { length: 5 },
-      (_, index) => numbers.length + index + 1
+      (_, index) =>
+        `https://picsum.photos/id/${numbers.length + index + 1}/200/300`
     )
     setTimeout(
       () => setNumbers((previusValue) => [...previusValue, ...newArray]),
@@ -32,20 +39,21 @@ export default function InfinityScroll() {
               justifyContent: "center",
             }}
           >
-            <Text
-              style={{ textAlign: "center", fontSize: 50, fontWeight: "bold" }}
-            >
-              {item}
-            </Text>
+            <Image
+              source={{ uri: item }}
+              height={300}
+              width={200}
+              resizeMode="cover"
+            />
           </View>
         )}
       />
-      <Image
-        source={{ uri: "https://picsum.photos/id/237/200/300" }}
+      {/*   <Image
+        source={{ uri: `https://picsum.photos/id/237/200/300` }}
         height={300}
         width={200}
         resizeMode="cover"
-      />
+      /> */}
     </View>
   )
 }
