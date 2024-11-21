@@ -16,12 +16,13 @@ export default function InfinityScroll() {
   }
   return (
     <View style={{ flex: 1 }}>
-      {/* <FlatList
+      <FlatList
         data={numbers}
         onEndReachedThreshold={0.6}
         onEndReached={onLoadMore}
         ListFooterComponent={<ActivityIndicator size="large" />}
         keyExtractor={(item, index) => index + 1 + ""}
+        ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
         renderItem={({ item }) => (
           <View
             style={{
@@ -38,8 +39,7 @@ export default function InfinityScroll() {
             </Text>
           </View>
         )}
-          
-      /> */}
+      />
       <Image
         source={{ uri: "https://picsum.photos/id/237/200/300" }}
         height={300}
