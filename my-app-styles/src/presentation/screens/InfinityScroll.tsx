@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { View, Text, ActivityIndicator } from "react-native"
+import { View, Text, ActivityIndicator, Image } from "react-native"
 import { FlatList } from "react-native-gesture-handler"
 
 export default function InfinityScroll() {
@@ -7,7 +7,7 @@ export default function InfinityScroll() {
   const onLoadMore = () => {
     const newArray = Array.from(
       { length: 5 },
-      (_, index) => numbers.length + index
+      (_, index) => numbers.length + index + 1
     )
     setTimeout(
       () => setNumbers((previusValue) => [...previusValue, ...newArray]),
@@ -16,7 +16,7 @@ export default function InfinityScroll() {
   }
   return (
     <View style={{ flex: 1 }}>
-      <FlatList
+      {/* <FlatList
         data={numbers}
         onEndReachedThreshold={0.6}
         onEndReached={onLoadMore}
@@ -38,6 +38,13 @@ export default function InfinityScroll() {
             </Text>
           </View>
         )}
+          
+      /> */}
+      <Image
+        source={{ uri: "https://picsum.photos/id/237/200/300" }}
+        height={300}
+        width={200}
+        resizeMode="cover"
       />
     </View>
   )
