@@ -1,5 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack"
-import { HomeScreen, PositionScreen } from "../screens"
+import { HomeScreen, PositionScreen, SectionListScreen } from "../screens"
 import FlexScreen from "../screens/FlexScreen"
 import SliderScreen from "../screens/SliderScreen"
 import InfinityScroll from "../screens/InfinityScroll"
@@ -12,6 +12,7 @@ export type StackProps = {
   SLIDER: undefined
   SCROLL: undefined
   PULLTOREFRESH: undefined
+  SECTIONLIST: undefined
 }
 
 const Stack = createStackNavigator<StackProps>()
@@ -48,6 +49,11 @@ export default function StackGroup() {
         name="PULLTOREFRESH"
         component={PullToRefresh}
         options={{ title: "PullToRefresh", headerTitleAlign: "center" }}
+      />
+      <Stack.Screen
+        name="SECTIONLIST"
+        component={SectionListScreen}
+        options={{ title: "Section List", headerTitleAlign: "center" }}
       />
     </Stack.Navigator>
   )
