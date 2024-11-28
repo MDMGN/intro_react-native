@@ -9,6 +9,7 @@ import FlexScreen from "../screens/FlexScreen"
 import SliderScreen from "../screens/SliderScreen"
 import InfinityScroll from "../screens/InfinityScroll"
 import PullToRefresh from "../screens/PullToRefresh"
+import { Animate2Screen } from "../screens/Animate2Screen"
 
 export type StackProps = {
   HOME: undefined
@@ -63,7 +64,7 @@ export default function StackGroup() {
       />
       <Stack.Screen
         name="Animate"
-        component={AnimateScreen}
+        component={Animate2Screen}
         options={{ title: "Animate", headerTitleAlign: "center" }}
       />
     </Stack.Navigator>
