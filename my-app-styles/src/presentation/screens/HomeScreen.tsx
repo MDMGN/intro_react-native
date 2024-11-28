@@ -30,6 +30,11 @@ export function HomeScreen() {
           title="Pull to Refresh"
           iconLeftName={<AntDesign name="totop" size={20} />}
         />
+        <MenuItem
+          route="Animate"
+          title="Animate React Native"
+          iconLeftName={<AntDesign name="totop" size={20} />}
+        />
       </View>
     </ScrollView>
   )

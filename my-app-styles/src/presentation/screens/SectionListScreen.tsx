@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 import { ajax } from "../../config/helpers/ajax"
 import apiURL from "../../config/api/superHeroe"
 import { HeroResponse } from "../../infrastructure/interfaces/HeroResponse"
+import { RefreshControl } from "react-native-gesture-handler"
 
 type DataSection = {
   title: string
@@ -45,9 +46,12 @@ export function SectionListScreen() {
   return (
     <View style={{ flex: 1 }}>
       <SectionList
+        refreshControl={
+          <RefreshControl refreshing={false} onRefresh={() => {}} />
+        }
         sections={dataSections}
         renderItem={({ item }) => <Text>{item}</Text>}
-        renderSectionHeader={({ section }) => <Text>{section.title}</Text>}
+        renderSectionHeader={({ section: { title } }) => <Text>{title}</Text>}
         ListEmptyComponent={() => (
           <Text
             style={{ fontSize: 25, fontWeight: "bold", textAlign: "center" }}

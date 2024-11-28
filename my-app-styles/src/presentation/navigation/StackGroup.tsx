@@ -1,5 +1,10 @@
 import { createStackNavigator } from "@react-navigation/stack"
-import { HomeScreen, PositionScreen, SectionListScreen } from "../screens"
+import {
+  AnimateScreen,
+  HomeScreen,
+  PositionScreen,
+  SectionListScreen,
+} from "../screens"
 import FlexScreen from "../screens/FlexScreen"
 import SliderScreen from "../screens/SliderScreen"
 import InfinityScroll from "../screens/InfinityScroll"
@@ -13,6 +18,7 @@ export type StackProps = {
   SCROLL: undefined
   PULLTOREFRESH: undefined
   SECTIONLIST: undefined
+  Animate: undefined
 }
 
 const Stack = createStackNavigator<StackProps>()
@@ -54,6 +60,11 @@ export default function StackGroup() {
         name="SECTIONLIST"
         component={SectionListScreen}
         options={{ title: "Section List", headerTitleAlign: "center" }}
+      />
+      <Stack.Screen
+        name="Animate"
+        component={AnimateScreen}
+        options={{ title: "Animate", headerTitleAlign: "center" }}
       />
     </Stack.Navigator>
   )
