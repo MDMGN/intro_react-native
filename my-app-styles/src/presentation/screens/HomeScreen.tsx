@@ -35,6 +35,11 @@ export function HomeScreen() {
           title="Animate React Native"
           iconLeftName={<AntDesign name="totop" size={20} />}
         />
+        <MenuItem
+          route="SECTIONLIST"
+          title="Section List / Fetch API"
+          iconLeftName={<AntDesign name="totop" size={20} />}
+        />
       </View>
     </ScrollView>
   )
