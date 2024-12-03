@@ -10,7 +10,7 @@ import SliderScreen from "../screens/SliderScreen"
 import InfinityScroll from "../screens/InfinityScroll"
 import PullToRefresh from "../screens/PullToRefresh"
 import AnimateSpringScreen from "../screens/AnimateSpringScreen"
-import AnimateStarger from "../screens/AnimateStarger"
+import AnimateStarger from "../screens/AnimateStagger"
 
 export type StackProps = {
   HOME: undefined
