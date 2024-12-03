@@ -10,6 +10,7 @@ import SliderScreen from "../screens/SliderScreen"
 import InfinityScroll from "../screens/InfinityScroll"
 import PullToRefresh from "../screens/PullToRefresh"
 import AnimateSpringScreen from "../screens/AnimateSpringScreen"
+import AnimateStarger from "../screens/AnimateStarger"
 
 export type StackProps = {
   HOME: undefined
@@ -64,7 +65,7 @@ export default function StackGroup() {
       />
       <Stack.Screen
         name="Animate"
-        component={AnimateSpringScreen}
+        component={AnimateStarger}
         options={{ title: "Animate", headerTitleAlign: "center" }}
       />
     </Stack.Navigator>
