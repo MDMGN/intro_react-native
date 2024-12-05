@@ -21,7 +21,7 @@ export function TextAnimation() {
   )
 
   useEffect(() => {
-    Animated.stagger(200, animations).start()
+    Animated.loop(Animated.stagger(200, animations)).start()
   }, [])
 
   return (
@@ -31,8 +31,9 @@ export function TextAnimation() {
           <Animated.Text
             key={index}
             style={{
-              fontSize: 25,
-              fontWeight: "bold",
+              fontSize: 100,
+              fontWeight: "900",
+              letterSpacing: 10,
               opacity: anims[index],
               transform: [
                 {
@@ -53,7 +54,24 @@ export function TextAnimation() {
                     outputRange: [0.02, 1.2],
                   }),
                 },
+                {
+                  skewY: anims[index].interpolate({
+                    inputRange: [0, 1],
+                    outputRange: ["105deg", "0deg"],
+                  }),
+                },
+                {
+                  rotateY: anims[index].interpolate({
+                    inputRange: [0, 1],
+                    outputRange: ["360deg", "0deg"],
+                  }),
+                },
               ],
+              color: anims[index].interpolate({
+                inputRange: [0, 1],
+                outputRange: ["black", "red"],
+                extrapolate: "clamp",
+              }),
             }}
           >
             {char}
