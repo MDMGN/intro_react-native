@@ -4,6 +4,7 @@ import {
   HomeScreen,
   PositionScreen,
   SectionListScreen,
+  TextAnimation,
 } from "../screens"
 import FlexScreen from "../screens/FlexScreen"
 import SliderScreen from "../screens/SliderScreen"
@@ -65,7 +66,7 @@ export default function StackGroup() {
       />
       <Stack.Screen
         name="Animate"
-        component={AnimateStarger}
+        component={TextAnimation}
         options={{ title: "Animate", headerTitleAlign: "center" }}
       />
     </Stack.Navigator>
