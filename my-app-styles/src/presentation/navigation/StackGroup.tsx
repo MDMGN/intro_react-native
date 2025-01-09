@@ -1,17 +1,12 @@
 import { createStackNavigator } from "@react-navigation/stack"
-import {
-  AnimateScreen,
-  HomeScreen,
-  PositionScreen,
-  SectionListScreen,
-  TextAnimation,
-} from "../screens"
+import { HomeScreen, PositionScreen, SectionListScreen } from "../screens"
 import FlexScreen from "../screens/FlexScreen"
 import SliderScreen from "../screens/SliderScreen"
 import InfinityScroll from "../screens/InfinityScroll"
 import PullToRefresh from "../screens/PullToRefresh"
 import AnimateSpringScreen from "../screens/AnimateSpringScreen"
 import AnimateStarger from "../screens/AnimateStagger"
+import AnimatedEvent from "../screens/AnimatedEvent"
 
 export type StackProps = {
   HOME: undefined
@@ -66,7 +61,7 @@ export default function StackGroup() {
       />
       <Stack.Screen
         name="Animate"
-        component={TextAnimation}
+        component={AnimatedEvent}
         options={{ title: "Animate", headerTitleAlign: "center" }}
       />
     </Stack.Navigator>
